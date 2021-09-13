@@ -1,0 +1,220 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.5f1 (8095aa901b9b) revision 8426922'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Pro; OS build 19041.508; Version 2004; 64bit' Language: 'ru' Physical Memory: 12170 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.3.5f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+E:/My Programming/unity/test/DirtyPiggy
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+53423
+Successfully changed project path to: E:/My Programming/unity/test/DirtyPiggy
+E:/My Programming/unity/test/DirtyPiggy
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 37.41 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.5f1 (8095aa901b9b)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.5f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/My Programming/unity/test/DirtyPiggy/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 850M (ID=0x1391)
+    Vendor:   
+    VRAM:     4055 MB
+    Driver:   26.21.14.4598
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.5f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.5f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.5f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56428
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.5f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002275 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 38.49 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.062 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.000923 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 40.32 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.154 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 0.80 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1809 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 84.8 MB.
+System memory in use after: 84.8 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 2250.
+Total: 2.499500 ms (FindLiveObjects: 0.215500 ms CreateObjectMapping: 0.100500 ms MarkObjects: 2.020700 ms  DeleteObjects: 0.161600 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Dirty Piggy Sprites/dog_dirty.png
+  artifactKey: Guid(cffe5afdec4b7394cb088474d91d8ddb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/dog_dirty.png using Guid(cffe5afdec4b7394cb088474d91d8ddb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e031a2ccb7a6ed369397929e344fc325') in 0.232121 seconds
+  Import took 0.235971 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000290 seconds.
+  path: Assets/Dirty Piggy Sprites/farmer.png
+  artifactKey: Guid(588f170c57f05a548b6160d8473bfd7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/farmer.png using Guid(588f170c57f05a548b6160d8473bfd7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dcf3c935b6eb6fb94dff65439902cb22') in 0.071413 seconds
+  Import took 0.074932 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000193 seconds.
+  path: Assets/Dirty Piggy Sprites
+  artifactKey: Guid(1ff8d19fab651d041bccc67d1d2be480) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites using Guid(1ff8d19fab651d041bccc67d1d2be480) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e4646ea689c3634ec2797feee616cee') in 0.006321 seconds
+  Import took 0.009976 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000223 seconds.
+  path: Assets/Dirty Piggy Sprites/bomb.png
+  artifactKey: Guid(f29a34040c2b78945bf7a51ebd7caad7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/bomb.png using Guid(f29a34040c2b78945bf7a51ebd7caad7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0787285bfae418e899ed7d8f62b19338') in 0.021748 seconds
+  Import took 0.026169 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000226 seconds.
+  path: Assets/Dirty Piggy Sprites/dog.png
+  artifactKey: Guid(59b7ee50b9698b64c9df913e8a9d79c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/dog.png using Guid(59b7ee50b9698b64c9df913e8a9d79c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '765f91fa34acb317548786ab565198a1') in 0.058542 seconds
+  Import took 0.062156 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000196 seconds.
+  path: Assets/Dirty Piggy Sprites/dog_angry.png
+  artifactKey: Guid(cf5ce1648cd09d949be4470e9cb4e847) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/dog_angry.png using Guid(cf5ce1648cd09d949be4470e9cb4e847) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '93e47a74c64b43764a2f94be47d17f4b') in 0.053553 seconds
+  Import took 0.057101 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000223 seconds.
+  path: Assets/Dirty Piggy Sprites/farmer_angry.png
+  artifactKey: Guid(b9d1b93dc70290f438a3b735d8c29fe7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/farmer_angry.png using Guid(b9d1b93dc70290f438a3b735d8c29fe7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a372ee9eb45aa0cc17310562bef5cfda') in 0.029149 seconds
+  Import took 0.032954 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.652813 seconds.
+  path: Assets/Dirty Piggy Sprites/farmer_dirty.png
+  artifactKey: Guid(70751c43cd6d72e4daf31afa90448477) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/farmer_dirty.png using Guid(70751c43cd6d72e4daf31afa90448477) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4737f56dd0b68fbcb6afb3cc6016f06c') in 0.040661 seconds
+  Import took 0.045516 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.887179 seconds.
+  path: Assets/Dirty Piggy Sprites/grid.png
+  artifactKey: Guid(5d43538328355b94ab3a205f2d3b06f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/grid.png using Guid(5d43538328355b94ab3a205f2d3b06f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6100e96745850dca01e480ce6b9c9428') in 0.020594 seconds
+  Import took 0.024290 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.018724 seconds.
+  path: Assets/Dirty Piggy Sprites/level.png
+  artifactKey: Guid(11575612fb3cf84459dacd4169a332dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/level.png using Guid(11575612fb3cf84459dacd4169a332dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '61912b08c7d1759524be8b326ff09154') in 0.032078 seconds
+  Import took 0.036278 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 24.782827 seconds.
+  path: Assets/Dirty Piggy Sprites/pig.png
+  artifactKey: Guid(c777f6c6c7c9deb419589ecf22bfe4c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/pig.png using Guid(c777f6c6c7c9deb419589ecf22bfe4c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dbac8d6f8c81a8726707a1a5ba15c270') in 0.049467 seconds
+  Import took 0.052880 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 24.836789 seconds.
+  path: Assets/Dirty Piggy Sprites/pig.png
+  artifactKey: Guid(c777f6c6c7c9deb419589ecf22bfe4c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/pig.png using Guid(c777f6c6c7c9deb419589ecf22bfe4c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37e39a0b0a6f9a30a11d12f0f6616358') in 0.049356 seconds
+  Import took 0.053142 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 38.064076 seconds.
+  path: Assets/Dirty Piggy Sprites/level.png
+  artifactKey: Guid(11575612fb3cf84459dacd4169a332dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/level.png using Guid(11575612fb3cf84459dacd4169a332dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a12273d4989f0b3abec9c3075ba90b2') in 0.032792 seconds
+  Import took 0.036688 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.438365 seconds.
+  path: Assets/Dirty Piggy Sprites/level.png
+  artifactKey: Guid(11575612fb3cf84459dacd4169a332dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/level.png using Guid(11575612fb3cf84459dacd4169a332dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dae55c6ff22103eb84b109d665daf233') in 0.026450 seconds
+  Import took 0.030409 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 317.998026 seconds.
+  path: Assets/Dirty Piggy Sprites/grid.png
+  artifactKey: Guid(5d43538328355b94ab3a205f2d3b06f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/grid.png using Guid(5d43538328355b94ab3a205f2d3b06f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '13610e70b6ac5ab4196a80adc3c9ca32') in 0.032520 seconds
+  Import took 0.036596 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1560.517572 seconds.
+  path: Assets/Dirty Piggy Sprites/grid.png
+  artifactKey: Guid(5d43538328355b94ab3a205f2d3b06f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/grid.png using Guid(5d43538328355b94ab3a205f2d3b06f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aceaf4284f2c096efafb6388f93376c1') in 0.022444 seconds
+  Import took 0.026963 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 159.454220 seconds.
+  path: Assets/Dirty Piggy Sprites/stone.png
+  artifactKey: Guid(e033cb433f85fc446b319f6b6e80cd96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/stone.png using Guid(e033cb433f85fc446b319f6b6e80cd96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e775de69ffeeb3edde0a1c05c0e4c13c') in 0.019645 seconds
+  Import took 0.023484 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 26.860395 seconds.
+  path: Assets/Dirty Piggy Sprites/grid.png
+  artifactKey: Guid(5d43538328355b94ab3a205f2d3b06f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/grid.png using Guid(5d43538328355b94ab3a205f2d3b06f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c581c32a555de873295c9b9b4a2adf6d') in 0.019053 seconds
+  Import took 0.022975 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1336.348970 seconds.
+  path: Assets/Dirty Piggy Sprites/farmer_dirty.png
+  artifactKey: Guid(70751c43cd6d72e4daf31afa90448477) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirty Piggy Sprites/farmer_dirty.png using Guid(70751c43cd6d72e4daf31afa90448477) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8af4adf0c25409d689b55e5ff6949f2a') in 0.043984 seconds
+  Import took 0.048869 seconds .
+
