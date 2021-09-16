@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Field : MonoBehaviour
 {
-    public enum Direction { Up, Down, Left, Right }
+    public enum Direction { Up, Right }
 
     [Header("Parameters")]
     [SerializeField, Min(1)] private int countOfRows;
@@ -11,8 +11,12 @@ public class Field : MonoBehaviour
     [Header("References")]
     [SerializeField] private System.Collections.Generic.List<Cell> wayPoints;
 
+    private Cell[,] _cells;
+
     private void Start()
     {
+        _cells = new Cell[countOfRows, countOfColumns];
+
         for (int i = 0; i < wayPoints.Count; i++)
         {
             Vector2Int index = Vector2Int.zero;
@@ -21,43 +25,43 @@ public class Field : MonoBehaviour
             index.y = i % countOfColumns;
 
             wayPoints[i].Index = index;
+            _cells[index.x, index.y] = wayPoints[i];
         }
+
+        wayPoints.Clear();
     }
 
-    public bool CanMove(ref Vector2Int unitCell, Direction direction)
+    public Cell GiveCell(Cell startedCell, Direction direction, int distance = 0)
     {
-        Vector2Int newCell = CalculateCell(unitCell, direction);
+        Vector2Int newCellIndex = CalculateCellIndex(startedCell.Index, direction, distance);
 
-        if (newCell.x < 0 || newCell.x >= countOfRows) return false;
-        if (newCell.y < 0 || newCell.y >= countOfColumns) return false;
+        if (!CellInMatrix(newCellIndex)) return null; 
 
-        unitCell = newCell;
+        return GiveCell(newCellIndex);
+    }
+
+    private bool CellInMatrix(Vector2Int cellIndex)
+    {
+        if (cellIndex.x < 0 || cellIndex.x >= countOfRows) return false;
+        if (cellIndex.y < 0 || cellIndex.y >= countOfColumns) return false;
+
         return true;
     }
 
-    private bool CellInMatrix()
-    {
-        return false;
-    }
-
-    private Vector2Int CalculateCell(Vector2Int unitCell, Direction direction)
+    private Vector2Int CalculateCellIndex(Vector2Int unitCell, Direction direction, int distance)
     {
         switch (direction)
         {
             case Direction.Up:
-                unitCell.x--;
-                break;
-            case Direction.Down:
-                unitCell.x++;
-                break;
-            case Direction.Left:
-                unitCell.y--;
+                unitCell.x -= distance;
                 break;
             case Direction.Right:
-                unitCell.y++;
+                unitCell.y += distance;
                 break;
         }
 
         return unitCell;
     }
+
+    private Cell GiveCell(Vector2Int cellIndex) => _cells[cellIndex.x, cellIndex.y];
 }
