@@ -2,10 +2,9 @@ using UnityEngine;
 
 public interface IUnit
 {
-    Vector2 Position { get; }
+    Cell Cell { get; set; }
     float TimeToRelocate { get; }
 
-    void Move(Vector2 newPosition);
-
+    void MoveTo(Cell cell);
 
 }
