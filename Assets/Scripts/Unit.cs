@@ -14,20 +14,36 @@ public class Unit : MonoBehaviour, IUnit
     private Vector2 _startPosition;
 
     #region Properies
-    public Cell Cell { get; set; }
+    public Cell Cell { get; private set; }
 
     public float TimeToRelocate { get; private set; }
+
+    public bool IsMoving { get; private set; }
     #endregion
 
     private void Start()
     {
         TimeToRelocate = startTimeToRelocate;
         _startPosition = transform.position;
-        MoveTo(startedCellList.Random(), (int)(TimeToRelocate * 3));
+        MoveToStartPosition();
     }
 
-    public void MoveTo(Cell cell, int duration)
+    public void MoveTo(Cell cell, float duration)
     {
-        transform.DOMove(cell.Position, duration);
+        Sequence moveSequence = DOTween.Sequence();
+        moveSequence.AppendCallback(() => IsMoving = true)
+            .Append(transform.DOMove(cell.Position, duration))
+            .AppendCallback(() => IsMoving = false)
+            .AppendCallback(() => Cell = cell);
+    }
+
+    public void MoveTo(Cell cell)
+    {
+        MoveTo(cell, TimeToRelocate);
+    }
+
+    public void MoveToStartPosition()
+    {
+        MoveTo(startedCellList.Random(), TimeToRelocate * 3);
     }
 }
