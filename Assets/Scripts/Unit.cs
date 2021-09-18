@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using KAP.Helper;
 
 public class Unit : MonoBehaviour, IUnit
 {
@@ -22,11 +23,11 @@ public class Unit : MonoBehaviour, IUnit
     {
         TimeToRelocate = startTimeToRelocate;
         _startPosition = transform.position;
-        
+        MoveTo(startedCellList.Random(), (int)(TimeToRelocate * 3));
     }
 
-    public void MoveTo(Cell cell)
+    public void MoveTo(Cell cell, int duration)
     {
-        transform.DOMove(cell.Position, TimeToRelocate);
+        transform.DOMove(cell.Position, duration);
     }
 }

@@ -2199,6 +2199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 598134787}
+  - component: {fileID: 598134788}
   - component: {fileID: 598134786}
   m_Layer: 0
   m_Name: Player
@@ -2266,12 +2267,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598134785}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.27, y: -0.1, z: 0}
+  m_LocalPosition: {x: -13.11, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &598134788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598134785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d00a3bc887700419d40d1d3015e990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTimeToRelocate: 0.5
+  startedCellList:
+  - {fileID: 574738824}
+  - {fileID: 967451847}
+  - {fileID: 1122677936}
 --- !u!1 &605423621
 GameObject:
   m_ObjectHideFlags: 0
