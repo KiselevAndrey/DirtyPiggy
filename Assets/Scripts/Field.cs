@@ -1,4 +1,5 @@
 using UnityEngine;
+using KAP.Helper;
 
 public class Field : MonoBehaviour
 {
@@ -7,13 +8,45 @@ public class Field : MonoBehaviour
     [Header("Parameters")]
     [SerializeField, Min(1)] private int countOfRows;
     [SerializeField, Min(1)] private int countOfColumns;
+    [SerializeField, Min(1)] private int cabbageCount;
 
     [Header("References")]
     [SerializeField] private System.Collections.Generic.List<Cell> wayPoints;
+    [SerializeField] private System.Collections.Generic.List<Cell> dontSeed;
+    [SerializeField] private GameObject cabbagePrefab;
 
     private Cell[,] _cells;
 
+    #region Start
     private void Start()
+    {
+        UpdateDontSeedList();
+        Seeding();
+        WayPointsToCellMatrix();
+    }
+
+    private void UpdateDontSeedList()
+    {
+        for (int i = 0; i < dontSeed.Count; i++)
+            dontSeed[i].CanSeeding = false;
+    }
+
+    private void Seeding()
+    {
+        cabbageCount = Mathf.Min(cabbageCount, wayPoints.Count - dontSeed.Count);
+
+        for (int i = 0; i < cabbageCount; i++)
+        {
+            Cell temp = wayPoints.Random();
+            if (temp.CanSeeding)
+            {
+
+            }
+            else i--;
+        }
+    }
+
+    private void WayPointsToCellMatrix()
     {
         _cells = new Cell[countOfRows, countOfColumns];
 
@@ -30,7 +63,9 @@ public class Field : MonoBehaviour
 
         wayPoints.Clear();
     }
+    #endregion
 
+    #region Cell
     public Cell GiveCell(Cell startedCell, Direction direction, int distance = 1)
     {
         Matrix newCellIndex = CalculateCellIndex(startedCell.Index, direction, distance);
@@ -65,4 +100,5 @@ public class Field : MonoBehaviour
     }
 
     private Cell GiveCell(Matrix cellIndex) => _cells[cellIndex.Row, cellIndex.Column];
+    #endregion
 }

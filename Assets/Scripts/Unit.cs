@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour, IUnit
     private Vector2 _startPosition;
 
     #region Properies
-    public Cell Cell { get; private set; }
+    public Cell Cell { get; set; }
 
     public float TimeToRelocate { get; private set; }
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IUnit
 {
-    Cell Cell { get; }
+    Cell Cell { get; set;  }
     float TimeToRelocate { get; }
     bool IsMoving { get; }
 
