@@ -50,17 +50,18 @@ public class Field : MonoBehaviour
 
     private Matrix CalculateCellIndex(Matrix unitCell, Direction direction, int distance)
     {
+        Matrix temp = new Matrix(unitCell);
         switch (direction)
         {
             case Direction.Up:
-                unitCell.Row -= distance;
+                temp.Row -= distance;
                 break;
             case Direction.Right:
-                unitCell.Column += distance;
+                temp.Column += distance;
                 break;
         }
 
-        return unitCell;
+        return temp;
     }
 
     private Cell GiveCell(Matrix cellIndex) => _cells[cellIndex.Row, cellIndex.Column];

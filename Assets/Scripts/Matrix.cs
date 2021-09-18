@@ -13,6 +13,12 @@ public class Matrix : MonoBehaviour
     }
 
     public Matrix() => Row = Column = 0;
+
+    public Matrix(Matrix matrix)
+    {
+        Row = matrix.Row;
+        Column = matrix.Column;
+    }
     #endregion
 
     public static Matrix zero => new Matrix(0, 0);
