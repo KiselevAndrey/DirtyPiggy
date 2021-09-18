@@ -19,49 +19,49 @@ public class Field : MonoBehaviour
 
         for (int i = 0; i < wayPoints.Count; i++)
         {
-            Vector2Int index = Vector2Int.zero;
+            Matrix index = Matrix.zero;
 
-            index.x = i / countOfColumns;
-            index.y = i % countOfColumns;
+            index.Row = i / countOfColumns;
+            index.Column = i % countOfColumns;
 
             wayPoints[i].Index = index;
-            _cells[index.x, index.y] = wayPoints[i];
+            _cells[index.Row, index.Column] = wayPoints[i];
         }
 
         wayPoints.Clear();
     }
 
-    public Cell GiveCell(Cell startedCell, Direction direction, int distance = 0)
+    public Cell GiveCell(Cell startedCell, Direction direction, int distance = 1)
     {
-        Vector2Int newCellIndex = CalculateCellIndex(startedCell.Index, direction, distance);
+        Matrix newCellIndex = CalculateCellIndex(startedCell.Index, direction, distance);
 
         if (!CellInMatrix(newCellIndex)) return null; 
 
         return GiveCell(newCellIndex);
     }
 
-    private bool CellInMatrix(Vector2Int cellIndex)
+    private bool CellInMatrix(Matrix cellIndex)
     {
-        if (cellIndex.x < 0 || cellIndex.x >= countOfRows) return false;
-        if (cellIndex.y < 0 || cellIndex.y >= countOfColumns) return false;
+        if (!cellIndex.RowIndexInMatrix(countOfRows)) return false;
+        if (!cellIndex.ColumnIndexInMatrix(countOfColumns)) return false;
 
         return true;
     }
 
-    private Vector2Int CalculateCellIndex(Vector2Int unitCell, Direction direction, int distance)
+    private Matrix CalculateCellIndex(Matrix unitCell, Direction direction, int distance)
     {
         switch (direction)
         {
             case Direction.Up:
-                unitCell.x -= distance;
+                unitCell.Row -= distance;
                 break;
             case Direction.Right:
-                unitCell.y += distance;
+                unitCell.Column += distance;
                 break;
         }
 
         return unitCell;
     }
 
-    private Cell GiveCell(Vector2Int cellIndex) => _cells[cellIndex.x, cellIndex.y];
+    private Cell GiveCell(Matrix cellIndex) => _cells[cellIndex.Row, cellIndex.Column];
 }
