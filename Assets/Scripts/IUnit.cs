@@ -1,8 +1,10 @@
-using UnityEngine;
-
 public interface IUnit
 {
     Cell Cell { get; set;  }
+}
+
+public interface IMovingUnit : IUnit
+{
     float TimeToRelocate { get; }
     bool IsMoving { get; }
 
@@ -10,5 +12,4 @@ public interface IUnit
     void MoveTo(Cell cell);
 
     void MoveToStartPosition();
-
 }

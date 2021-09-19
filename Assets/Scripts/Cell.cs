@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Cell : MonoBehaviour
@@ -5,7 +6,7 @@ public class Cell : MonoBehaviour
     #region Properties
     public Matrix Index { get; set; }
 
-    public IUnit Unit { get; set; }
+    public List<IUnit> Unit { get; private set; }
 
     public bool CanSeeding { get; set; }
 
@@ -17,26 +18,27 @@ public class Cell : MonoBehaviour
     private void Awake()
     {
         CanSeeding = true;
+        Unit = new List<IUnit>();
+        Index = new Matrix();
     }
 
     #region Seeding
-    public bool Seeding(GameObject plantingPrefab)
+    public void SpawningUnit(GameObject unitPrefab)
     {
-        if(CanSeeding && Unit == null)
-        {
-            SpawningUnit(plantingPrefab);
-        }
-        return false;
-    }
-
-    public void SpawningUnit(GameObject unitPrefab, bool registration = true)
-    {
-        Instantiate(unitPrefab);
+        Instantiate(unitPrefab, Position, Quaternion.identity);
         if (unitPrefab.TryGetComponent(out IUnit unit))
         {
             unit.Cell = this;
-            if (registration) Unit = unit;
+            Unit.Add(unit);
         }
     }
+    #endregion
+
+    #region For Unit property
+    public void AddUnit(IUnit unit) => Unit.Add(unit);
+
+    public void RemoveUnit(IUnit unit) => Unit.Remove(unit);
+
+    public bool UnitIsEmpty() => Unit.Count == 0;
     #endregion
 }

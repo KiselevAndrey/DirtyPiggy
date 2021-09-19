@@ -5,11 +5,11 @@ public class KeyboardMoving : MonoBehaviour
     [Header("References")]
     [SerializeField] private Field field;
 
-    private IUnit _unit;
+    private IMovingUnit _unit;
 
     private void Start()
     {
-        _unit = GetComponent<IUnit>();
+        _unit = GetComponent<IMovingUnit>();
     }
 
     private void Update()
@@ -36,7 +36,7 @@ public class KeyboardMoving : MonoBehaviour
     private void MoveTo(Field.Direction direction, int distance)
     {
         Cell temp = field.GiveCell(_unit.Cell, direction, distance);
-        if (temp != null && temp.Unit == null)
+        if (temp != null && temp.UnitIsEmpty())
             _unit.MoveTo(temp);
     }
 }

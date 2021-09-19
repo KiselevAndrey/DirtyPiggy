@@ -38,9 +38,9 @@ public class Field : MonoBehaviour
         for (int i = 0; i < cabbageCount; i++)
         {
             Cell temp = wayPoints.Random();
-            if (temp.CanSeeding)
+            if (temp.CanSeeding && temp.UnitIsEmpty())
             {
-
+                temp.SpawningUnit(cabbagePrefab);
             }
             else i--;
         }
@@ -66,7 +66,7 @@ public class Field : MonoBehaviour
     #endregion
 
     #region Cell
-    public Cell GiveCell(Cell startedCell, Direction direction, int distance = 1)
+    public Cell GiveCell(Cell startedCell, Direction direction, int distance)
     {
         Matrix newCellIndex = CalculateCellIndex(startedCell.Index, direction, distance);
 
