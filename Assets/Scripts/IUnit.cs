@@ -1,6 +1,8 @@
 public interface IUnit
 {
     Cell Cell { get; set;  }
+
+    void Die();
 }
 
 public interface IMovingUnit : IUnit

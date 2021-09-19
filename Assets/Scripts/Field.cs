@@ -3,6 +3,8 @@ using KAP.Helper;
 
 public class Field : MonoBehaviour
 {
+    public static Field singleton;
+
     public enum Direction { Up, Right }
 
     [Header("Parameters")]
@@ -17,7 +19,12 @@ public class Field : MonoBehaviour
 
     private Cell[,] _cells;
 
-    #region Start
+    #region Awake Start
+    private void Awake()
+    {
+        if (!singleton) singleton = this;
+    }
+
     private void Start()
     {
         UpdateDontSeedList();
@@ -53,7 +60,6 @@ public class Field : MonoBehaviour
         for (int i = 0; i < wayPoints.Count; i++)
         {
             Matrix index = Matrix.zero;
-
             index.Row = i / countOfColumns;
             index.Column = i % countOfColumns;
 

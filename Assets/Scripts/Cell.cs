@@ -13,8 +13,6 @@ public class Cell : MonoBehaviour
     public Vector3 Position => transform.position;
     #endregion
 
-    public void Print() => print(Index.Row + " " + Index.Column);
-
     private void Awake()
     {
         CanSeeding = true;
@@ -25,8 +23,7 @@ public class Cell : MonoBehaviour
     #region Seeding
     public void SpawningUnit(GameObject unitPrefab)
     {
-        Instantiate(unitPrefab, Position, Quaternion.identity);
-        if (unitPrefab.TryGetComponent(out IUnit unit))
+        if (Instantiate(unitPrefab, Position, Quaternion.identity).TryGetComponent(out IUnit unit))
         {
             unit.Cell = this;
             Unit.Add(unit);
@@ -40,5 +37,16 @@ public class Cell : MonoBehaviour
     public void RemoveUnit(IUnit unit) => Unit.Remove(unit);
 
     public bool UnitIsEmpty() => Unit.Count == 0;
+
+    public void PrintUnits()
+    {
+        print("-------------------");
+        for (int i = 0; i < Unit.Count; i++)
+        {
+            print(Unit[i]);
+        }
+    }
     #endregion
+
+    public new string ToString() => name + " " + Index.ToString();
 }

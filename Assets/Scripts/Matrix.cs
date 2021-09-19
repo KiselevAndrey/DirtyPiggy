@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class Matrix : MonoBehaviour
+public class Matrix
 {
     public int Row { get; set; }
     public int Column { get; set; }
@@ -30,4 +28,6 @@ public class Matrix : MonoBehaviour
     
     private bool IndexInMatrix(int num, int maxIndex) => num >= 0 && num < maxIndex;
     #endregion
+
+    public new string ToString() => Row + " " + Column;
 }

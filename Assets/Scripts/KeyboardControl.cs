@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class KeyboardControl : MonoBehaviour
+public class KeyboardControl : MonoBehaviour, IControl
 {
     [Header("References")]
-    [SerializeField] private Field field;
+    [SerializeField] private GameObject bombPrefab;
 
     private IMovingUnit _unit;
 
@@ -19,6 +19,9 @@ public class KeyboardControl : MonoBehaviour
 
         if (!_unit.IsMoving)
         {
+            if (Input.GetKeyUp(KeyCode.Space))
+                PlantBomb();
+
             int verticalInput = (int)Input.GetAxis("Vertical");
             int horizontalInput = (int)Input.GetAxis("Horizontal");
 
@@ -33,10 +36,15 @@ public class KeyboardControl : MonoBehaviour
         }
     }
 
-    private void MoveTo(Field.Direction direction, int distance)
+    public void MoveTo(Field.Direction direction, int distance)
     {
-        Cell temp = field.GiveCell(_unit.Cell, direction, distance);
+        Cell temp = Field.singleton.GiveCell(_unit.Cell, direction, distance);
         if (temp != null && temp.UnitIsEmpty())
             _unit.MoveTo(temp);
+    }
+
+    public void PlantBomb()
+    {
+        _unit.Cell.SpawningUnit(bombPrefab);
     }
 }
