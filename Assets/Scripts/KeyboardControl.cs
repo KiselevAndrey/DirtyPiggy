@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KeyboardMoving : MonoBehaviour
+public class KeyboardControl : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Field field;
