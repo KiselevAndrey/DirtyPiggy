@@ -6,6 +6,9 @@ public class Bomb : Unit, IUnit
     [Header("Parameters")]
     [SerializeField, Min(0)] private float timeLife = 2f;
 
+    [Header("References")]
+    [SerializeField] private GameObject dirtySplashPrefab;
+
     private bool _isLive = true;
     private Sequence _lifeSequence;
 

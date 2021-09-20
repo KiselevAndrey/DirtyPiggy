@@ -14,4 +14,9 @@ public class Unit : MonoBehaviour, IUnit
         Cell.RemoveUnit(this);
         Destroy(gameObject);
     }
+
+    public void BecomeDirty()
+    {
+        Die();
+    }
 }

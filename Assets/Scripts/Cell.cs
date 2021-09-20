@@ -6,7 +6,7 @@ public class Cell : MonoBehaviour
     #region Properties
     public Matrix Index { get; set; }
 
-    public List<IUnit> Unit { get; private set; }
+    public List<IUnit> Units { get; private set; }
 
     public bool CanSeeding { get; set; }
 
@@ -16,7 +16,7 @@ public class Cell : MonoBehaviour
     private void Awake()
     {
         CanSeeding = true;
-        Unit = new List<IUnit>();
+        Units = new List<IUnit>();
         Index = new Matrix();
     }
 
@@ -26,24 +26,24 @@ public class Cell : MonoBehaviour
         if (Instantiate(unitPrefab, Position, Quaternion.identity).TryGetComponent(out IUnit unit))
         {
             unit.Cell = this;
-            Unit.Add(unit);
+            Units.Add(unit);
         }
     }
     #endregion
 
     #region For Unit property
-    public void AddUnit(IUnit unit) => Unit.Add(unit);
+    public void AddUnit(IUnit unit) => Units.Add(unit);
 
-    public void RemoveUnit(IUnit unit) => Unit.Remove(unit);
+    public void RemoveUnit(IUnit unit) => Units.Remove(unit);
 
-    public bool UnitIsEmpty() => Unit.Count == 0;
+    public bool UnitIsEmpty() => Units.Count == 0;
 
     public void PrintUnits()
     {
         print("-------------------");
-        for (int i = 0; i < Unit.Count; i++)
+        for (int i = 0; i < Units.Count; i++)
         {
-            print(Unit[i]);
+            print(Units[i]);
         }
     }
     #endregion

@@ -3,6 +3,8 @@ public interface IUnit
     Cell Cell { get; set;  }
 
     void Die();
+
+    void BecomeDirty();
 }
 
 public interface IMovingUnit : IUnit
