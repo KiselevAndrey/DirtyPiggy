@@ -45,7 +45,7 @@ public class Field : MonoBehaviour
         for (int i = 0; i < cabbageCount; i++)
         {
             Cell temp = wayPoints.Random();
-            if (temp.CanSeeding && temp.UnitIsEmpty())
+            if (temp.CanSeeding && temp.UnitsIsEmpty())
             {
                 temp.SpawningUnit(cabbagePrefab);
             }

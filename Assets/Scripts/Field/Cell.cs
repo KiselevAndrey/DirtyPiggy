@@ -36,7 +36,19 @@ public class Cell : MonoBehaviour
 
     public void RemoveUnit(IUnit unit) => Units.Remove(unit);
 
-    public bool UnitIsEmpty() => Units.Count == 0;
+    public bool UnitsIsEmpty() => Units.Count == 0;
+
+    public bool UnitsIsEmpty(IUnit exeptionUnit)
+    {
+        System.Type unitType = exeptionUnit.GetType();
+        int count = Units.Count;
+        for (int i = 0; i < Units.Count; i++)
+        {
+            if (Units[i].GetType() == unitType) 
+                count--;
+        }
+        return count == 0;
+    }
 
     public void PrintUnits()
     {

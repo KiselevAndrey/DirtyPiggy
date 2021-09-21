@@ -8,8 +8,9 @@ public class DirtySplash : Unit
     {
         for (int i = 0; i < Cell.Units.Count; i++)
         {
-            if(Cell.Units[i] != this)
-                Cell.Units[i].BecomeDirty();
+           Cell.Units[i].BecomeDirty();
         }
     }
+
+    public new void BecomeDirty() { }
 }

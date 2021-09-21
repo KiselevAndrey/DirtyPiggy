@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KeyboardControl : MonoBehaviour, IControl
+public class KeyboardControl : MonoBehaviour, IPlayerControl
 {
     [Header("References")]
     [SerializeField] private GameObject bombPrefab;
@@ -39,7 +39,7 @@ public class KeyboardControl : MonoBehaviour, IControl
     public void MoveTo(Field.Direction direction, int distance)
     {
         Cell temp = Field.singleton.GiveCell(_unit.Cell, direction, distance);
-        if (temp != null && temp.UnitIsEmpty())
+        if (temp != null && temp.UnitsIsEmpty())
             _unit.MoveTo(temp);
     }
 

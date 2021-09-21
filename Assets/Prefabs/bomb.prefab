@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLife: 2
+  range: 2
+  dirtySplashPrefab: {fileID: 3060342151847115281, guid: 943da2d2d4c3e8544b30f4bf1af54ec2, type: 3}
 --- !u!212 &3110910531619708386
 SpriteRenderer:
   m_ObjectHideFlags: 0
