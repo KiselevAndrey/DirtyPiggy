@@ -75,7 +75,6 @@ public class Field : MonoBehaviour
     public Cell GiveCell(Cell startedCell, Direction direction, int distance)
     {
         Matrix newCellIndex = CalculateCellIndex(startedCell.Index, direction, distance);
-
         if (!CellInMatrix(newCellIndex)) return null; 
 
         return GiveCell(newCellIndex);
