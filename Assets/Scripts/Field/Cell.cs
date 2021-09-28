@@ -23,7 +23,7 @@ public class Cell : MonoBehaviour
     #region Seeding
     public void SpawningUnit(GameObject unitPrefab)
     {
-        if (Instantiate(unitPrefab, Position, Quaternion.identity).TryGetComponent(out IUnit unit))
+        if (KAP.Pool.Pool.Spawn(unitPrefab, Position, Quaternion.identity).TryGetComponent(out IUnit unit))
         {
             unit.Cell = this;
             Units.Add(unit);

@@ -12,7 +12,7 @@ public class Unit : MonoBehaviour, IUnit
     public void Die()
     {
         Cell.RemoveUnit(this);
-        Destroy(gameObject);
+        KAP.Pool.Pool.Despawn(gameObject);
     }
 
     public void BecomeDirty()
