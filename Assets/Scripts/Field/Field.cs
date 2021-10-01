@@ -5,8 +5,6 @@ public class Field : MonoBehaviour
 {
     public static Field singleton;
 
-    public enum Direction { Up, Right }
-
     [Header("Parameters")]
     [SerializeField, Min(1)] private int countOfRows;
     [SerializeField, Min(1)] private int countOfColumns;
@@ -72,7 +70,7 @@ public class Field : MonoBehaviour
     #endregion
 
     #region Cell
-    public Cell GiveCell(Cell startedCell, Direction direction, int distance)
+    public Cell GiveCell(Cell startedCell, Direction.Directions direction, int distance)
     {
         Matrix newCellIndex = CalculateCellIndex(startedCell.Index, direction, distance);
         if (!CellInMatrix(newCellIndex)) return null; 
@@ -88,16 +86,26 @@ public class Field : MonoBehaviour
         return true;
     }
 
-    private Matrix CalculateCellIndex(Matrix unitCell, Direction direction, int distance)
+    private Matrix CalculateCellIndex(Matrix unitCell, Direction.Directions direction, int distance)
     {
         Matrix temp = new Matrix(unitCell);
+
         switch (direction)
         {
-            case Direction.Up:
+            case Direction.Directions.Up:
                 temp.Row -= distance;
                 break;
-            case Direction.Right:
+            case Direction.Directions.Down:
+                temp.Row += distance;
+                break;
+            case Direction.Directions.Left:
+                temp.Column -= distance;
+                break;
+            case Direction.Directions.Right:
                 temp.Column += distance;
+                break;
+            case Direction.Directions.Error:
+                Debug.LogWarning("Error direction");
                 break;
         }
 

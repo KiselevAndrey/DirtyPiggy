@@ -12,6 +12,7 @@ public class MovingUnit : Unit, IMovingUnit
     [SerializeField] private List<Cell> startedCellList;
 
     private Vector2 _startPosition;
+    protected Direction.Directions _forwardDirection;
 
     #region Properies
 

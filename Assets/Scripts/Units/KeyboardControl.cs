@@ -27,16 +27,16 @@ public class KeyboardControl : MonoBehaviour, IPlayerControl
 
             if(verticalInput != 0)
             {
-                MoveTo(Field.Direction.Up, verticalInput);
+                MoveTo(KAP.Helper.Direction.Up, verticalInput);
             }
             else if (horizontalInput != 0)
             {
-                MoveTo(Field.Direction.Right, horizontalInput);
+                MoveTo(KAP.Helper.Direction.Right, horizontalInput);
             }
         }
     }
 
-    public void MoveTo(Field.Direction direction, int distance)
+    public void MoveTo(KAP.Helper.Direction.Directions direction, int distance)
     {
         Cell temp = Field.singleton.GiveCell(_unit.Cell, direction, distance);
         if (temp != null && temp.UnitsIsEmpty())

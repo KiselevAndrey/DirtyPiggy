@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using KAP.Helper;
 
 public class Bomb : Unit, IUnit
 {
@@ -44,15 +45,15 @@ public class Bomb : Unit, IUnit
     private void Detonate()
     {
         Cell.SpawningUnit(dirtySplashPrefab);
-        CalculateBlastWave(Field.Direction.Up, 1);
-        CalculateBlastWave(Field.Direction.Up, -1);
-        CalculateBlastWave(Field.Direction.Right, 1);
-        CalculateBlastWave(Field.Direction.Right, -1);
+        CalculateBlastWave(Direction.Up, 1);
+        CalculateBlastWave(Direction.Up, -1);
+        CalculateBlastWave(Direction.Right, 1);
+        CalculateBlastWave(Direction.Right, -1);
 
         Die();
     }
 
-    private void CalculateBlastWave(Field.Direction direction, int multiplier, int waveIndex = 1)
+    private void CalculateBlastWave(Direction.Directions direction, int multiplier, int waveIndex = 1)
     {
         Cell currentCell = Field.singleton.GiveCell(Cell, direction, waveIndex * multiplier);
         Sequence blastWaveSequence = DOTween.Sequence();

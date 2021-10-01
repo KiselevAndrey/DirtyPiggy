@@ -18,16 +18,31 @@ public class AIMoving : MovingUnit, IMovingUnit
         _pigType = new Pig().GetType();
     }
 
+    #region Override
     protected override void EndMoving()
     {
         base.EndMoving();
         TryFindPlayer(out Cell playerCell);
     }
 
+    public override void MoveToStartPosition()
+    {
+        base.MoveToStartPosition();
+        _forwardDirection = KAP.Helper.Direction.Directions.Left;
+    }
+    #endregion
+
     private bool TryFindPlayer(out Cell findingCell)
     {
         findingCell = null;
-        // проверить на своей ячейке игрока
+
+        // check pig on Cell
+        if (Cell.TryFindUnit(_pigType))
+        {
+            findingCell = Cell;
+            return true;
+        }
+
         // проверить игрока спереди (findForwardRange)
         // проверить игрока по бокам (findForwardRange / 2)
         // сзади не проверять
