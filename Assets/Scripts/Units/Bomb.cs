@@ -11,14 +11,22 @@ public class Bomb : Unit, IUnit
     [Header("References")]
     [SerializeField] private GameObject dirtySplashPrefab;
 
-    private bool _isLive = true;
+    private bool _isLive;
     private Sequence _lifeSequence;
 
-    private void Start()
+    private void OnEnable()
     {
+        _isLive = true;
+
         _lifeSequence = DOTween.Sequence();
         _lifeSequence.AppendInterval(timeLife)
             .AppendCallback(() => Detonate());
+    }
+
+    #region From IUnit
+    public new void BecomeDirty()
+    {
+        Detonate();
     }
 
     private new void Die()
@@ -30,12 +38,9 @@ public class Bomb : Unit, IUnit
             base.Die();
         }
     }
+    #endregion
 
-    public new void BecomeDirty()
-    {
-        Detonate();
-    }
-
+    #region Detonate
     private void Detonate()
     {
         Cell.SpawningUnit(dirtySplashPrefab);
@@ -59,4 +64,5 @@ public class Bomb : Unit, IUnit
                     CalculateBlastWave(direction, multiplier, ++waveIndex);
             });
     }
+    #endregion
 }

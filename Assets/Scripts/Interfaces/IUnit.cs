@@ -2,9 +2,9 @@ public interface IUnit
 {
     Cell Cell { get; set;  }
 
-    void Die();
-
     void BecomeDirty();
+
+    void Die();
 }
 
 public interface IMovingUnit : IUnit
