@@ -11,7 +11,7 @@ namespace KAP.Helper
         public static Directions Right => Directions.Right;
         #endregion
 
-        static Directions GiveRigthDirection(Directions forwardDirection)
+        public static Directions GiveRightDirection(Directions forwardDirection)
         {
             switch (forwardDirection)
             {
@@ -24,7 +24,7 @@ namespace KAP.Helper
             return Directions.Error;
         }
 
-        static Directions GiveLeftDirection(Directions forwardDirection)
+        public static Directions GiveLeftDirection(Directions forwardDirection)
         {
             switch (forwardDirection)
             {
@@ -37,7 +37,7 @@ namespace KAP.Helper
             return Directions.Error;
         }
 
-        static Directions GiveBackDirection(Directions forwardDirection)
+        public static Directions GiveBackDirection(Directions forwardDirection)
         {
             switch (forwardDirection)
             {

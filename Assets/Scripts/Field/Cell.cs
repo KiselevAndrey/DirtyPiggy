@@ -31,11 +31,13 @@ public class Cell : MonoBehaviour
     }
     #endregion
 
-    #region For Unit property
+    #region Properties for Unit 
     public void AddUnit(IUnit unit) => Units.Add(unit);
 
     public void RemoveUnit(IUnit unit) => Units.Remove(unit);
+    #endregion
 
+    #region Units is empty
     public bool UnitsIsEmpty() => Units.Count == 0;
 
     public bool UnitsIsEmpty(IUnit exeptionUnit)
@@ -49,7 +51,9 @@ public class Cell : MonoBehaviour
         }
         return count == 0;
     }
+    #endregion
 
+    #region Find Unit
     public bool TryFindUnit(System.Type unitType)
     {
         for (int i = 0; i < Units.Count; i++)
@@ -60,6 +64,23 @@ public class Cell : MonoBehaviour
         return false;
     }
 
+    public bool TryFindUnit(System.Type unitType, out IUnit unit)
+    {
+        unit = null;
+
+        for (int i = 0; i < Units.Count; i++)
+        {
+            if (Units[i].GetType() == unitType)
+            {
+                unit = Units[i];
+                return true;
+            }
+        }
+
+        return false;
+    }
+    #endregion
+
     public void PrintUnits()
     {
         print("-------------------");
@@ -68,7 +89,6 @@ public class Cell : MonoBehaviour
             print(Units[i]);
         }
     }
-    #endregion
 
     public new string ToString() => name + " " + Index.ToString();
 }
