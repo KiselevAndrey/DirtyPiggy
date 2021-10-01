@@ -36,7 +36,7 @@ public class MovingUnit : Unit, IMovingUnit
             .Append(transform.DOMove(cell.Position, duration))
             .AppendCallback(() => Cell = cell)
             .AppendCallback(() => Cell.AddUnit(this))
-            .AppendCallback(() => IsMoving = false);
+            .AppendCallback(() => EndMoving());
     }
 
     public void MoveTo(Cell cell)
@@ -44,9 +44,14 @@ public class MovingUnit : Unit, IMovingUnit
         MoveTo(cell, TimeToRelocate);
     }
 
-    public void MoveToStartPosition()
+    public virtual void MoveToStartPosition()
     {
         MoveTo(startedCellList.Random(), TimeToRelocate * 3);
+    }
+
+    protected virtual void EndMoving()
+    {
+        IsMoving = false;
     }
     #endregion
 }

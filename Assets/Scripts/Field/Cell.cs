@@ -50,6 +50,16 @@ public class Cell : MonoBehaviour
         return count == 0;
     }
 
+    public bool TryFindUnit(System.Type unitType)
+    {
+        for (int i = 0; i < Units.Count; i++)
+        {
+            if (Units[i].GetType() == unitType)
+                return true;
+        }
+        return false;
+    }
+
     public void PrintUnits()
     {
         print("-------------------");
