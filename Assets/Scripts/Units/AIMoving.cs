@@ -1,5 +1,6 @@
 using UnityEngine;
 using KAP.Helper;
+using DG.Tweening;
 
 public class AIMoving : MovingUnit, IMovingUnit
 {
@@ -9,10 +10,9 @@ public class AIMoving : MovingUnit, IMovingUnit
     [Tooltip("The percentage of time from a normal transition that is spent on an attack")]
     [SerializeField, Range(0.2f, 1f)] private float reducingTransitionTime = 0.5f;
     [SerializeField, Min(0)] private float maxIdleTime = 5f;
-
-    [SerializeField] Pig pig;
-    
+        
     private System.Type _pigType;
+    private Sequence _waitSequence;
 
     private void Awake()
     {
@@ -22,8 +22,6 @@ public class AIMoving : MovingUnit, IMovingUnit
     #region Override
     protected override void EndMoving()
     {
-        base.EndMoving();
-
         // Check pig on this Cell
         if (Cell.TryFindUnit(_pigType, out IUnit unit))
         {
@@ -31,12 +29,9 @@ public class AIMoving : MovingUnit, IMovingUnit
             return;
         }
 
-        // Find Pig around
-        if (TryFindPlayer(out Cell playerCell))
-        {
-            // if the player is found, then run to attack him
-            MoveTo(playerCell, TimeToRelocate * reducingTransitionTime);
-        }
+        FindPigAround();
+
+        WaitToNextMove(Random.Range(0f, maxIdleTime));
     }
 
     public override void MoveToStartPosition()
@@ -46,7 +41,20 @@ public class AIMoving : MovingUnit, IMovingUnit
     }
     #endregion
 
-    #region TryFindPlayer
+    #region FindPlayer
+    private bool FindPigAround()
+    {
+        if (TryFindPlayer(out Cell playerCell))
+        {
+            // if the player is found, then run to attack him
+            MoveTo(playerCell, TimeToRelocate * reducingTransitionTime);
+            _waitSequence.Kill();
+            return true;
+        }
+
+        return false;
+    }
+
     /// <summary> Search for a player across the entire front and half of the sides. Don't check the back </summary>
     private bool TryFindPlayer(out Cell findingCell)
     {
@@ -71,11 +79,44 @@ public class AIMoving : MovingUnit, IMovingUnit
         for (int i = 1; i < range; i++)
         {
             findingCell = Field.singleton.GiveCell(Cell, direction, i);
-            if (findingCell.TryFindUnit(_pigType)) 
+            if (findingCell != null && findingCell.TryFindUnit(_pigType)) 
                 return true;
         }
 
         return false;
     }
     #endregion
+
+    private void WaitToNextMove(float endTime, float currentTime = 0f)
+    {
+        // Need wait?
+        if (currentTime < endTime)
+        {
+            _waitSequence = DOTween.Sequence();
+            _waitSequence.AppendInterval(endTime / 5)
+                .AppendCallback(() =>
+                {
+                    if (!FindPigAround())
+                        WaitToNextMove(endTime, currentTime + endTime / 5);
+                });
+        }
+        // Can move on
+        else
+        {
+            FindNewMoveDirection();
+        }
+    }
+
+    private void FindNewMoveDirection()
+    {
+        Direction.Directions direction = Direction.Random();
+        Cell nextCell = Field.singleton.GiveCell(Cell, direction, 1);
+
+        if (nextCell != null)
+        {
+            MoveTo(nextCell);
+        }
+        else
+            FindNewMoveDirection();
+    }
 }

@@ -3131,10 +3131,9 @@ MonoBehaviour:
   - {fileID: 2025896876}
   - {fileID: 1643201196}
   - {fileID: 124336059}
-  findForwardRange: 10
+  findForwardRange: 2
   reducingTransitionTime: 0.5
   maxIdleTime: 5
-  pig: {fileID: 598134788}
 --- !u!212 &1095383411
 SpriteRenderer:
   m_ObjectHideFlags: 0
