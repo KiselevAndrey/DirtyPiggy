@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour, IUnit
         Cell = new Cell();
     }
 
-    public void Die()
+    public virtual void Die()
     {
         Cell.RemoveUnit(this);
         KAP.Pool.Pool.Despawn(gameObject);

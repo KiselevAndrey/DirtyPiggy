@@ -60,7 +60,8 @@ public class Bomb : Unit, IUnit
             .AppendCallback(() => currentCell.SpawningUnit(dirtySplashPrefab))
             .AppendCallback(() =>
             {
-                if (currentCell && currentCell.UnitsIsEmpty(new DirtySplash()))
+                // checking that the wave can be launched further
+                if (waveIndex < range && currentCell && currentCell.UnitsIsEmpty(new DirtySplash()))
                     CalculateBlastWave(direction, multiplier, ++waveIndex);
             });
     }

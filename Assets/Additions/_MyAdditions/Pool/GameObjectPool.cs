@@ -5,9 +5,6 @@ namespace KAP.Pool
 {
     public class GameObjectPool : MonoBehaviour
     {
-        [Header("Parameters")]
-        [SerializeField] private bool showWarnings = true;
-
         [Header("Lists")]
         /// <summary>This stores all spawned clones in a list. This is used when Recycle is enabled, because knowing the spawn order must be known. This list is also used during serialization.</summary>
 		[SerializeField] private List<GameObject> spawnedClones = new List<GameObject>();
@@ -37,6 +34,8 @@ namespace KAP.Pool
         #endregion
 
         private GameObject _prefab;
+
+        #region Static
         private static Dictionary<GameObject, GameObjectPool> _prefabMap = new Dictionary<GameObject, GameObjectPool>();
 
         /// <summary>Find the pool responsible for handling the specified prefab.</summary>
@@ -44,10 +43,20 @@ namespace KAP.Pool
         {
             return _prefabMap.TryGetValue(prefab, out foundPool);
         }
+        #endregion
+
+        private void OnDestroy()
+        {
+            // If OnDestroy is called then the scene is likely changing, so we detach the spawned prefabs from the global links dictionary to prevent issues.
+            foreach (var clone in spawnedClones)
+                Pool.Detach(clone);
+
+            _prefabMap.Remove(Prefab);
+        }
 
         #region TrySpawn
         /// <summary>This will either spawn a previously despawned/preloaded clone, recycle one, create a new one, or return null.</summary>
-		public bool TrySpawn(ref GameObject clone, Vector3 localPosition, Quaternion localRotation, 
+        public bool TrySpawn(ref GameObject clone, Vector3 localPosition, Quaternion localRotation, 
             Transform parent, bool worldPositionStays)
         {
             if (_prefab == null)
@@ -76,7 +85,6 @@ namespace KAP.Pool
 
             return true;
         }
-        #endregion
 
         #region Spawn
         private void SpawnClone(GameObject clone, Vector3 localPosition, Quaternion localRotation,
@@ -106,6 +114,7 @@ namespace KAP.Pool
                 return Instantiate(Prefab, localPosition, localRotation, parent);
         }
         #endregion
+        #endregion
 
         #region Despawn
         public void Despawn(GameObject clone)
@@ -129,7 +138,7 @@ namespace KAP.Pool
 
             despawnedClones.Add(clone);
             clone.SetActive(false);
-            clone.transform.SetParent(transform, false);
+            clone.transform.SetParent(transform);
         }
         #endregion
 

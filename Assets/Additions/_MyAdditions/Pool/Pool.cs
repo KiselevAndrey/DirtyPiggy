@@ -29,6 +29,7 @@ namespace KAP.Pool
 
         }
         /// <summary>This allows you to spawn a prefab with GameObject.</summary>
+        
         public static GameObject Spawn(GameObject prefab, Vector3 localPosition, Quaternion localRotation,
             Transform parent, bool worldPositionStays)
         {
@@ -84,6 +85,20 @@ namespace KAP.Pool
 
                 pool.Despawn(clone);
             }
+            else
+            {
+                Debug.LogWarning("You can't despawned an object because it wasn't spawned", clone);
+            }
+        }
+        #endregion
+
+        #region Detach
+        /// <summary>This allows you to detach a clone via GameObject.
+		/// A detached clone will act as a normal GameObject, requiring you to manually destroy or otherwise manage it.</summary>
+        public static void Detach(GameObject clone)
+        {
+            if (clone != null) links.Remove(clone);
+            else Debug.LogWarning("You're attempting to detach a null GameObject.", clone);
         }
         #endregion
     }
