@@ -58,7 +58,7 @@ public class Bomb : Unit, IUnit
         Cell currentCell = Field.singleton.GiveCell(Cell, direction, waveIndex * multiplier);
         Sequence blastWaveSequence = DOTween.Sequence();
         blastWaveSequence.AppendInterval(blastWaveDelay)
-            .AppendCallback(() => currentCell.SpawningUnit(dirtySplashPrefab))
+            .AppendCallback(() => currentCell.SpawningUnit(dirtySplashPrefab, false))
             .AppendCallback(() =>
             {
                 // checking that the wave can be launched further

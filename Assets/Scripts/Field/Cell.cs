@@ -21,12 +21,13 @@ public class Cell : MonoBehaviour
     }
 
     #region Seeding
-    public void SpawningUnit(GameObject unitPrefab)
+    public void SpawningUnit(GameObject unitPrefab, bool register = true)
     {
         if (KAP.Pool.Pool.Spawn(unitPrefab, Position, Quaternion.identity).TryGetComponent(out IUnit unit))
         {
             unit.Cell = this;
-            Units.Add(unit);
+            if(register)
+                Units.Add(unit);
         }
     }
     #endregion

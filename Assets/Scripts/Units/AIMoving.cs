@@ -10,9 +10,11 @@ public class AIMoving : MovingUnit, IMovingUnit
     [Tooltip("The percentage of time from a normal transition that is spent on an attack")]
     [SerializeField, Range(0.2f, 1f)] private float reducingTransitionTime = 0.5f;
     [SerializeField, Min(0)] private float maxIdleTime = 5f;
+    [SerializeField] private bool showFindingArea;
 
     [Header("AI References")]
     [SerializeField] private AIAnimations animations;
+    [SerializeField] private GameObject targetDisplayPrefab;
         
     private System.Type _pigType;
     private System.Random _random;
@@ -125,6 +127,7 @@ public class AIMoving : MovingUnit, IMovingUnit
             findingCell = Field.singleton.GiveCell(Cell, direction, i);
             if (findingCell != null)
             {
+                if (showFindingArea) findingCell.SpawningUnit(targetDisplayPrefab, false);
                 if (findingCell.TryFindUnit(_pigType))
                 {
                     animations.ChangeAngrySprite(direction);

@@ -42,15 +42,27 @@ public class MovingUnit : Unit, IMovingUnit
     {
         Sequence moveSequence = DOTween.Sequence();
         moveSequence.AppendCallback(() => IsMoving = true)
-            .AppendCallback(() => Cell.RemoveUnit(this))
             .Append(transform.DOMove(cell.Position, duration))
-            .AppendCallback(() => Cell = cell)
-            .AppendCallback(() => Cell.AddUnit(this))
             .AppendCallback(() => EndMoving());
+
+        Sequence sequence = DOTween.Sequence();
+        sequence.AppendInterval(duration / 2)
+            .AppendCallback(() => Cell.RemoveUnit(this))
+            .AppendCallback(() => Cell = cell)
+            .AppendCallback(() => Cell.AddUnit(this));
     }
 
-    public void MoveTo(Cell cell)
+    public void MoveTo(Cell cell, float duration, Direction.Directions direction)
     {
+        _forwardDirection = direction;
+        MoveTo(cell, duration);
+    }
+
+    public void MoveTo(Cell cell) => MoveTo(cell, TimeToRelocate);
+
+    public void MoveTo(Cell cell, Direction.Directions direction)
+    {
+        _forwardDirection = direction;
         MoveTo(cell, TimeToRelocate);
     }
 

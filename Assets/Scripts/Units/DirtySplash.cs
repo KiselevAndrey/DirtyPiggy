@@ -2,9 +2,10 @@ public class DirtySplash : Unit
 {
     public void GetDirty()
     {
-        for (int i = 0; i < Cell.Units.Count; i++)
+        int count = Cell.Units.Count;
+        for (int i = 0; i < count; i++)
         {
-           Cell.Units[i].BecomeDirty();
+            Cell.Units[0].BecomeDirty();
         }
     }
 
