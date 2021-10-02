@@ -4,9 +4,9 @@ public class KeyboardControl : MonoBehaviour, IPlayerControl
 {
     [Header("References")]
     [SerializeField] private GameObject bombPrefab;
+    [SerializeField] private Animations animations;
 
     private IMovingUnit _unit;
-
 
     private void Start()
     {
@@ -29,10 +29,12 @@ public class KeyboardControl : MonoBehaviour, IPlayerControl
             if(verticalInput != 0)
             {
                 MoveTo(KAP.Helper.Direction.Up, verticalInput);
+                animations.ChangeSprite(verticalInput > 0 ? KAP.Helper.Direction.Up : KAP.Helper.Direction.Down);
             }
             else if (horizontalInput != 0)
             {
                 MoveTo(KAP.Helper.Direction.Right, horizontalInput);
+                animations.ChangeSprite(horizontalInput > 0 ? KAP.Helper.Direction.Right : KAP.Helper.Direction.Left);
             }
         }
     }

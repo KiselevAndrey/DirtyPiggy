@@ -10,12 +10,16 @@ public class AIMoving : MovingUnit, IMovingUnit
     [Tooltip("The percentage of time from a normal transition that is spent on an attack")]
     [SerializeField, Range(0.2f, 1f)] private float reducingTransitionTime = 0.5f;
     [SerializeField, Min(0)] private float maxIdleTime = 5f;
+
+    [Header("AI References")]
+    [SerializeField] private AIAnimations animations;
         
     private System.Type _pigType;
     private System.Random _random;
     private Sequence _waitSequence;
     private bool _isRunToHome;
 
+    #region Awake OnDestroy
     private void Awake()
     {
         _pigType = new Pig().GetType();
@@ -28,6 +32,7 @@ public class AIMoving : MovingUnit, IMovingUnit
     {
         Pig.MovingAction -= FindPigAroundAction;
     }
+    #endregion
 
     #region Override
     protected override void EndMoving()
@@ -36,7 +41,6 @@ public class AIMoving : MovingUnit, IMovingUnit
 
         if (_isRunToHome)
         {
-            _waitSequence.Kill();
             RunToHome();
         }
         else
@@ -48,6 +52,8 @@ public class AIMoving : MovingUnit, IMovingUnit
                 return;
             }
 
+            animations.ChangeSprite(_forwardDirection);
+
             FindPigAround();
 
             WaitToNextMove(Random.Range(maxIdleTime / 2, maxIdleTime));
@@ -58,13 +64,19 @@ public class AIMoving : MovingUnit, IMovingUnit
     {
         base.MoveToStartPosition();
         _forwardDirection = Direction.Directions.Left;
+        animations.ChangeSprite(Direction.Left);
         _isRunToHome = false;
     }
 
     public override void BecomeDirty()
     {
         _isRunToHome = true;
-        RunToHome();
+        _waitSequence.Kill();
+        Sequence sequence = DOTween.Sequence();
+        sequence.AppendCallback(() => animations.ChangeDirtySprite(_forwardDirection))
+            .AppendInterval(1f)
+            .AppendCallback(() => animations.ChangeDirtySprite(Direction.Right))
+            .AppendCallback(() => RunToHome());       
     }
     #endregion
 
@@ -111,8 +123,15 @@ public class AIMoving : MovingUnit, IMovingUnit
         for (int i = 1; i <= range; i++)
         {
             findingCell = Field.singleton.GiveCell(Cell, direction, i);
-            if (findingCell != null && findingCell.TryFindUnit(_pigType)) 
-                return true;
+            if (findingCell != null)
+            {
+                if (findingCell.TryFindUnit(_pigType))
+                {
+                    animations.ChangeAngrySprite(direction);
+                    _forwardDirection = direction;
+                    return true;
+                }
+            }
         }
 
         return false;
@@ -138,7 +157,8 @@ public class AIMoving : MovingUnit, IMovingUnit
 
         if (nextCell != null)
         {
-            MoveTo(nextCell);
+            animations.ChangeSprite(direction);
+            MoveTo(nextCell, direction);
         }
         else
             FindNewMoveDirection();
@@ -149,7 +169,7 @@ public class AIMoving : MovingUnit, IMovingUnit
     private void RunToHome()
     {
         Cell nextCell = Field.singleton.GiveCell(Cell, Direction.Right, 1);
-        if (nextCell != null) MoveTo(nextCell);
+        if (nextCell != null) MoveTo(nextCell, Direction.Right);
         else MoveToHomePosition();
     }
 

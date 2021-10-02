@@ -10,15 +10,24 @@ public class MovingUnit : Unit, IMovingUnit
 
     [Header("References")]
     [SerializeField] private List<Cell> startedCellList;
+    [SerializeField] private Animator animator;
 
     protected Vector2 _homePosition;
     protected Direction.Directions _forwardDirection;
+    private bool _isMoving;
 
     #region Properies
-
     public float TimeToRelocate { get; private set; }
 
-    public bool IsMoving { get; private set; }
+    public bool IsMoving 
+    {
+        get => _isMoving; 
+        private set
+        {
+            _isMoving = value;
+            animator.SetBool("Moving", value);
+        }
+    }
     #endregion
 
     private void Start()
