@@ -6,12 +6,12 @@ using KAP.Helper;
 public class MovingUnit : Unit, IMovingUnit
 {
     [Header("Parameters")]
-    [SerializeField, Min(0)] private float startTimeToRelocate;
+    [SerializeField, Min(0)] protected float startTimeToRelocate;
 
     [Header("References")]
     [SerializeField] private List<Cell> startedCellList;
 
-    private Vector2 _startPosition;
+    protected Vector2 _homePosition;
     protected Direction.Directions _forwardDirection;
 
     #region Properies
@@ -24,7 +24,7 @@ public class MovingUnit : Unit, IMovingUnit
     private void Start()
     {
         TimeToRelocate = startTimeToRelocate;
-        _startPosition = transform.position;
+        _homePosition = transform.position;
         MoveToStartPosition();
     }
 

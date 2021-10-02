@@ -12,8 +12,9 @@ public class AIMoving : MovingUnit, IMovingUnit
     [SerializeField, Min(0)] private float maxIdleTime = 5f;
         
     private System.Type _pigType;
-    private Sequence _waitSequence;
     private System.Random _random;
+    private Sequence _waitSequence;
+    private bool _isRunToHome;
 
     private void Awake()
     {
@@ -33,22 +34,37 @@ public class AIMoving : MovingUnit, IMovingUnit
     {
         base.EndMoving();
 
-        // Check pig on this Cell
-        if (Cell.TryFindUnit(_pigType, out IUnit unit))
+        if (_isRunToHome)
         {
-            unit.Die();
-            return;
+            _waitSequence.Kill();
+            RunToHome();
         }
+        else
+        {
+            // Check pig on this Cell
+            if (Cell.TryFindUnit(_pigType, out IUnit pig))
+            {
+                pig.Die();
+                return;
+            }
 
-        FindPigAround();
+            FindPigAround();
 
-        WaitToNextMove(Random.Range(maxIdleTime / 2, maxIdleTime));
+            WaitToNextMove(Random.Range(maxIdleTime / 2, maxIdleTime));
+        }
     }
 
     public override void MoveToStartPosition()
     {
         base.MoveToStartPosition();
         _forwardDirection = Direction.Directions.Left;
+        _isRunToHome = false;
+    }
+
+    public override void BecomeDirty()
+    {
+        _isRunToHome = true;
+        RunToHome();
     }
     #endregion
 
@@ -103,6 +119,7 @@ public class AIMoving : MovingUnit, IMovingUnit
     }
     #endregion
 
+    #region NextMove
     private void WaitToNextMove(float endTime)
     {
         _waitSequence.Kill();
@@ -126,4 +143,24 @@ public class AIMoving : MovingUnit, IMovingUnit
         else
             FindNewMoveDirection();
     }
+    #endregion
+
+    #region BecomeDirty
+    private void RunToHome()
+    {
+        Cell nextCell = Field.singleton.GiveCell(Cell, Direction.Right, 1);
+        if (nextCell != null) MoveTo(nextCell);
+        else MoveToHomePosition();
+    }
+
+    private void MoveToHomePosition()
+    {
+        Sequence moveSequence = DOTween.Sequence();
+        moveSequence.AppendCallback(() => Cell.RemoveUnit(this))
+            .Append(transform.DOMove(_homePosition, startTimeToRelocate))
+            .AppendCallback(() => Cell = null)
+            .AppendInterval(maxIdleTime)
+            .AppendCallback(() => MoveToStartPosition());
+    }
+    #endregion
 }

@@ -44,8 +44,8 @@ public class KeyboardControl : MonoBehaviour, IPlayerControl
         {
             _unit.MoveTo(temp);
         }
-        if (temp != null && !temp.UnitsIsEmpty())
-            temp.PrintUnits();
+        //if (temp != null && !temp.UnitsIsEmpty())
+        //    temp.PrintUnits();
     }
 
     public void PlantBomb()
