@@ -114,4 +114,13 @@ public class Field : MonoBehaviour
 
     private Cell GiveCell(Matrix cellIndex) => _cells[cellIndex.Row, cellIndex.Column];
     #endregion
+
+    #region Static
+    public static int Distance(Cell firstCell, Cell secondCell)
+    {
+        return firstCell == null || secondCell == null
+            ? default
+            : Mathf.Abs(firstCell.Index.Row - secondCell.Index.Row) + Mathf.Abs(firstCell.Index.Column - secondCell.Index.Column);
+    }
+    #endregion
 }

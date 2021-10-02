@@ -15,7 +15,7 @@ public class Unit : MonoBehaviour, IUnit
         KAP.Pool.Pool.Despawn(gameObject);
     }
 
-    public void BecomeDirty()
+    public virtual void BecomeDirty()
     {
         Die();
     }

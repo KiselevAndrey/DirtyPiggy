@@ -11,6 +11,7 @@ namespace KAP.Helper
         public static Directions Right => Directions.Right;
         #endregion
 
+        #region GiveDirection
         public static Directions GiveRightDirection(Directions forwardDirection)
         {
             switch (forwardDirection)
@@ -49,7 +50,9 @@ namespace KAP.Helper
 
             return Directions.Error;
         }
+        #endregion
 
+        #region Random
         public static Directions Random()
         {
             System.Array values = System.Enum.GetValues(typeof(Directions));
@@ -59,5 +62,15 @@ namespace KAP.Helper
                 temp = Random();
             return temp;
         }
+
+        public static Directions Random(System.Random random)
+        {
+            System.Array values = System.Enum.GetValues(typeof(Directions));
+            Directions temp = (Directions)values.GetValue(random.Next(values.Length));
+            if (temp == Directions.Error)
+                temp = Random(random);
+            return temp;
+        }
+        #endregion
     }
 }

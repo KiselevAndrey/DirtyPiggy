@@ -25,7 +25,7 @@ public class Bomb : Unit, IUnit
     }
 
     #region From IUnit
-    public new void BecomeDirty()
+    public override void BecomeDirty()
     {
         Detonate();
     }

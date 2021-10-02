@@ -13,15 +13,26 @@ public class AIMoving : MovingUnit, IMovingUnit
         
     private System.Type _pigType;
     private Sequence _waitSequence;
+    private System.Random _random;
 
     private void Awake()
     {
         _pigType = new Pig().GetType();
+        _random = new System.Random();
+
+        Pig.MovingAction += FindPigAroundAction;
+    }
+
+    private void OnDestroy()
+    {
+        Pig.MovingAction -= FindPigAroundAction;
     }
 
     #region Override
     protected override void EndMoving()
     {
+        base.EndMoving();
+
         // Check pig on this Cell
         if (Cell.TryFindUnit(_pigType, out IUnit unit))
         {
@@ -31,7 +42,7 @@ public class AIMoving : MovingUnit, IMovingUnit
 
         FindPigAround();
 
-        WaitToNextMove(Random.Range(0f, maxIdleTime));
+        WaitToNextMove(Random.Range(maxIdleTime / 2, maxIdleTime));
     }
 
     public override void MoveToStartPosition()
@@ -42,12 +53,17 @@ public class AIMoving : MovingUnit, IMovingUnit
     #endregion
 
     #region FindPlayer
+    private void FindPigAroundAction()
+    {
+        FindPigAround();
+    }
+
     private bool FindPigAround()
     {
-        if (TryFindPlayer(out Cell playerCell))
+        if (!IsMoving && TryFindPlayer(out Cell playerCell))
         {
             // if the player is found, then run to attack him
-            MoveTo(playerCell, TimeToRelocate * reducingTransitionTime);
+            MoveTo(playerCell, TimeToRelocate * reducingTransitionTime * Field.Distance(playerCell, Cell));
             _waitSequence.Kill();
             return true;
         }
@@ -76,7 +92,7 @@ public class AIMoving : MovingUnit, IMovingUnit
     {
         findingCell = null;
 
-        for (int i = 1; i < range; i++)
+        for (int i = 1; i <= range; i++)
         {
             findingCell = Field.singleton.GiveCell(Cell, direction, i);
             if (findingCell != null && findingCell.TryFindUnit(_pigType)) 
@@ -87,29 +103,20 @@ public class AIMoving : MovingUnit, IMovingUnit
     }
     #endregion
 
-    private void WaitToNextMove(float endTime, float currentTime = 0f)
+    private void WaitToNextMove(float endTime)
     {
-        // Need wait?
-        if (currentTime < endTime)
-        {
-            _waitSequence = DOTween.Sequence();
-            _waitSequence.AppendInterval(endTime / 5)
-                .AppendCallback(() =>
-                {
-                    if (!FindPigAround())
-                        WaitToNextMove(endTime, currentTime + endTime / 5);
-                });
-        }
-        // Can move on
-        else
-        {
-            FindNewMoveDirection();
-        }
+        _waitSequence.Kill();
+        _waitSequence = DOTween.Sequence();
+        _waitSequence.AppendInterval(endTime)
+            .AppendCallback(() =>
+            {
+                FindNewMoveDirection();
+            });
     }
 
     private void FindNewMoveDirection()
     {
-        Direction.Directions direction = Direction.Random();
+        Direction.Directions direction = Direction.Random(_random);
         Cell nextCell = Field.singleton.GiveCell(Cell, direction, 1);
 
         if (nextCell != null)

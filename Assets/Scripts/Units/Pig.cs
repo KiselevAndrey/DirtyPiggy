@@ -1,5 +1,7 @@
 public class Pig : MovingUnit, IUnit
 {
+    public static System.Action MovingAction;
+
     #region Override
     public override void Die()
     {
@@ -10,6 +12,13 @@ public class Pig : MovingUnit, IUnit
     {
         base.MoveToStartPosition();
         _forwardDirection = KAP.Helper.Direction.Directions.Right;
+    }
+
+    protected override void EndMoving()
+    {
+        base.EndMoving();
+
+        MovingAction?.Invoke();
     }
     #endregion
 }

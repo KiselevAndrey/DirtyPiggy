@@ -7,6 +7,7 @@ public class KeyboardControl : MonoBehaviour, IPlayerControl
 
     private IMovingUnit _unit;
 
+
     private void Start()
     {
         _unit = GetComponent<IMovingUnit>();
@@ -40,7 +41,11 @@ public class KeyboardControl : MonoBehaviour, IPlayerControl
     {
         Cell temp = Field.singleton.GiveCell(_unit.Cell, direction, distance);
         if (temp != null && temp.UnitsIsEmpty())
+        {
             _unit.MoveTo(temp);
+        }
+        if (temp != null && !temp.UnitsIsEmpty())
+            temp.PrintUnits();
     }
 
     public void PlantBomb()
