@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1587363176136305639}
   - component: {fileID: 1587363176136305635}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Pig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,10 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTimeToRelocate: 0.5
-  startedCellList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  startedCellList: []
   animator: {fileID: 1587363176136305635}
 --- !u!114 &1587363176136305632
 MonoBehaviour:

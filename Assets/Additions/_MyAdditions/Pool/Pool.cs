@@ -9,6 +9,8 @@ namespace KAP.Pool
 		public static Dictionary<GameObject, GameObjectPool> links = new Dictionary<GameObject, GameObjectPool>();
 
         #region Spawn
+        /// <summary>This allows you to spawn a prefab with GameObject.</summary>
+        public static GameObject Spawn(GameObject prefab, Vector3 position) => Spawn(prefab, position, Quaternion.identity);
 
         /// <summary>This allows you to spawn a prefab with GameObject.</summary>
         public static GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent = null)
@@ -28,8 +30,8 @@ namespace KAP.Pool
             return Spawn(prefab, position, rotation, parent, false);
 
         }
-        /// <summary>This allows you to spawn a prefab with GameObject.</summary>
         
+        /// <summary>This allows you to spawn a prefab with GameObject.</summary>
         public static GameObject Spawn(GameObject prefab, Vector3 localPosition, Quaternion localRotation,
             Transform parent, bool worldPositionStays)
         {

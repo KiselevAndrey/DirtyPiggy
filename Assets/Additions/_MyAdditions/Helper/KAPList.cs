@@ -5,7 +5,7 @@ namespace KAP.Helper
 {
     public static class KAPList
     {
-        static Random rnd = new Random();
+        private static readonly Random _random = new Random();
 
         public static void Shuffle<T>(this IList<T> list)
         {
@@ -13,14 +13,14 @@ namespace KAP.Helper
             while (n > 1)
             {
                 n--;
-                int k = rnd.Next(n + 1);
+                int k = _random.Next(n + 1);
                 T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
             }
         }
 
-        public static T Random<T>(this IList<T> list) => list[rnd.Next(list.Count)];
+        public static T Random<T>(this IList<T> list) => list[_random.Next(list.Count)];
 
         #region List<T>.Ind
         /// <summary>

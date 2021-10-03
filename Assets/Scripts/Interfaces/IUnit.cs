@@ -11,9 +11,11 @@ public interface IMovingUnit : IUnit
 {
     float TimeToRelocate { get; }
     bool IsMoving { get; }
+    public Cell HomeCell { get; set; }
 
     void MoveTo(Cell cell, float duration);
     void MoveTo(Cell cell);
 
+    void SetStartCellList(System.Collections.Generic.List<Cell> cells);
     void MoveToStartPosition();
 }

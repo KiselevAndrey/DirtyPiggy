@@ -160,12 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTimeToRelocate: 1
-  startedCellList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  startedCellList: []
   animator: {fileID: 7235011798666773616}
   findForwardRange: 3
   reducingTransitionTime: 0.8

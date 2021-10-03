@@ -17,7 +17,6 @@ public class AIMoving : MovingUnit, IMovingUnit
     [SerializeField] private GameObject targetDisplayPrefab;
         
     private System.Type _pigType;
-    private System.Random _random;
     private Sequence _waitSequence;
     private bool _isRunToHome;
 
@@ -25,7 +24,6 @@ public class AIMoving : MovingUnit, IMovingUnit
     private void Awake()
     {
         _pigType = new Pig().GetType();
-        _random = new System.Random();
 
         Pig.MovingAction += FindPigAroundAction;
     }
@@ -155,7 +153,7 @@ public class AIMoving : MovingUnit, IMovingUnit
 
     private void FindNewMoveDirection()
     {
-        Direction.Directions direction = Direction.Random(_random);
+        Direction.Directions direction = Direction.Random();
         Cell nextCell = Field.singleton.GiveCell(Cell, direction, 1);
 
         if (nextCell != null)
@@ -164,7 +162,9 @@ public class AIMoving : MovingUnit, IMovingUnit
             MoveTo(nextCell, direction);
         }
         else
+        {
             FindNewMoveDirection();
+        }
     }
     #endregion
 
@@ -180,7 +180,7 @@ public class AIMoving : MovingUnit, IMovingUnit
     {
         Sequence moveSequence = DOTween.Sequence();
         moveSequence.AppendCallback(() => Cell.RemoveUnit(this))
-            .Append(transform.DOMove(_homePosition, startTimeToRelocate))
+            .Append(transform.DOMove(HomeCell.Position, startTimeToRelocate))
             .AppendCallback(() => Cell = null)
             .AppendInterval(maxIdleTime)
             .AppendCallback(() => MoveToStartPosition());

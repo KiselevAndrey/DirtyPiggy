@@ -4,6 +4,8 @@ namespace KAP.Helper
     {
         public enum Directions { Up, Down, Left, Right, Error };
 
+        private static readonly System.Random _random = new System.Random();
+
         #region Properties
         public static Directions Up => Directions.Up;
         public static Directions Down => Directions.Down;
@@ -56,19 +58,9 @@ namespace KAP.Helper
         public static Directions Random()
         {
             System.Array values = System.Enum.GetValues(typeof(Directions));
-            System.Random random = new System.Random();
-            Directions temp =  (Directions)values.GetValue(random.Next(values.Length));
+            Directions temp = (Directions)values.GetValue(_random.Next(values.Length));
             if (temp == Directions.Error)
                 temp = Random();
-            return temp;
-        }
-
-        public static Directions Random(System.Random random)
-        {
-            System.Array values = System.Enum.GetValues(typeof(Directions));
-            Directions temp = (Directions)values.GetValue(random.Next(values.Length));
-            if (temp == Directions.Error)
-                temp = Random(random);
             return temp;
         }
         #endregion

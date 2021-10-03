@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using KAP.Helper;
@@ -9,11 +8,10 @@ public class MovingUnit : Unit, IMovingUnit
     [SerializeField, Min(0)] protected float startTimeToRelocate;
 
     [Header("References")]
-    [SerializeField] private List<Cell> startedCellList;
     [SerializeField] private Animator animator;
 
-    protected Vector2 _homePosition;
-    protected Direction.Directions _forwardDirection;
+    protected Direction.Directions _forwardDirection; 
+    private System.Collections.Generic.List<Cell> _startedCellList;
     private bool _isMoving;
 
     #region Properies
@@ -28,13 +26,13 @@ public class MovingUnit : Unit, IMovingUnit
             animator.SetBool("Moving", value);
         }
     }
+
+    public Cell HomeCell { get; set; }
     #endregion
 
-    private void Start()
+    private void OnEnable()
     {
         TimeToRelocate = startTimeToRelocate;
-        _homePosition = transform.position;
-        MoveToStartPosition();
     }
 
     #region Move To
@@ -68,7 +66,7 @@ public class MovingUnit : Unit, IMovingUnit
 
     public virtual void MoveToStartPosition()
     {
-        MoveTo(startedCellList.Random(), TimeToRelocate * 3);
+        MoveTo(_startedCellList.Random(), TimeToRelocate * 3);
     }
 
     protected virtual void EndMoving()
@@ -76,4 +74,9 @@ public class MovingUnit : Unit, IMovingUnit
         IsMoving = false;
     }
     #endregion
+
+    public void SetStartCellList(System.Collections.Generic.List<Cell> cells)
+    {
+        _startedCellList = cells;
+    }
 }

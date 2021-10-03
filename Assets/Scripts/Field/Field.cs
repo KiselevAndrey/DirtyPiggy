@@ -30,12 +30,14 @@ public class Field : MonoBehaviour
         WayPointsToCellMatrix();
     }
 
+    /// <summary> Prohibits sowing in cells </summary>
     private void UpdateDontSeedList()
     {
         for (int i = 0; i < dontSeed.Count; i++)
             dontSeed[i].CanSeeding = false;
     }
 
+    /// <summary> Plants cabbage in a cell </summary>
     private void Seeding()
     {
         cabbageCount = Mathf.Min(cabbageCount, wayPoints.Count - dontSeed.Count);
@@ -51,6 +53,7 @@ public class Field : MonoBehaviour
         }
     }
 
+    /// <summary> Converts a list of cells into a matrix. Gives cells an Index </summary>
     private void WayPointsToCellMatrix()
     {
         _cells = new Cell[countOfRows, countOfColumns];

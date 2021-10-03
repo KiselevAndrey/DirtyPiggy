@@ -20,14 +20,24 @@ public class Cell : MonoBehaviour
         Index = new Matrix();
     }
 
-    #region Seeding
+    #region Spaning
     public void SpawningUnit(GameObject unitPrefab, bool register = true)
     {
-        if (KAP.Pool.Pool.Spawn(unitPrefab, Position, Quaternion.identity).TryGetComponent(out IUnit unit))
+        if (KAP.Pool.Pool.Spawn(unitPrefab, Position).TryGetComponent(out IUnit unit))
         {
             unit.Cell = this;
             if(register)
                 Units.Add(unit);
+        }
+    }
+
+    public void SpawningMovingUnit(GameObject unitPrefab, List<Cell> startedCellList)
+    {
+        if(KAP.Pool.Pool.Spawn(unitPrefab, Position).TryGetComponent(out IMovingUnit movingUnit))
+        {
+            movingUnit.HomeCell = this;
+            movingUnit.SetStartCellList(startedCellList);
+            movingUnit.MoveToStartPosition();
         }
     }
     #endregion
