@@ -9,7 +9,6 @@ public interface IUnit
 
 public interface IMovingUnit : IUnit
 {
-    float TimeToRelocate { get; }
     bool IsMoving { get; }
     public Cell HomeCell { get; set; }
 

@@ -47,8 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0b9764bedd4a344890e9f975a3efda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeToRelocate: 0.5
-  startedCellList: []
+  timeToRelocate: 0.5
   animator: {fileID: 1587363176136305635}
 --- !u!114 &1587363176136305632
 MonoBehaviour:

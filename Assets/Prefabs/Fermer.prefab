@@ -159,8 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67964e6d3ffdcf6479ff49da8a5f9cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeToRelocate: 1
-  startedCellList: []
+  timeToRelocate: 1
   animator: {fileID: 7235011798666773616}
   findForwardRange: 3
   reducingTransitionTime: 0.8

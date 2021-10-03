@@ -40,6 +40,15 @@ public class GameManager : MonoBehaviour
         ActivateMenu();
     }
 
+    #region Start Game
+    public void StartGame(int lvlIndex)
+    {
+        Cleaning();
+        pigSpawnCell.SpawningMovingUnit(pigPrefab, pigStartedList);
+        SpawnLVL(lvlIndex);
+        _currentLVL = lvlIndex;
+        ActivateGameUI();
+    }
     private void SpawnLVL(int index)
     {
         LVLSO lvl = lvlsList[index];
@@ -55,17 +64,8 @@ public class GameManager : MonoBehaviour
         // spawn fermers
         for (int i = 0; i < lvl.FermerCount; i++)
             enemyCellSpawn.SpawningMovingUnit(fermerPrebab, enemyStartedList);
-
     }
-
-    public void StartGame(int lvlIndex)
-    {
-        Cleaning();
-        pigSpawnCell.SpawningMovingUnit(pigPrefab, pigStartedList);
-        SpawnLVL(lvlIndex);
-        _currentLVL = lvlIndex;
-        ActivateGameUI();
-    }
+    #endregion
 
     /// <summary> Clearing the Field of Units & start time </summary>
     private void Cleaning()

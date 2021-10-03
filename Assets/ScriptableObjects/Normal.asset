@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Normal
   m_EditorClassIdentifier: 
   minCabbageCount: 10
-  maxCabbageCount: 20
+  maxCabbageCount: 15
   dogCount: 1
   fermerCount: 1

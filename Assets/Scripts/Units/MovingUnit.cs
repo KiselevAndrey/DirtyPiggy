@@ -5,18 +5,18 @@ using KAP.Helper;
 public class MovingUnit : Unit, IMovingUnit
 {
     [Header("Parameters")]
-    [SerializeField, Min(0)] protected float startTimeToRelocate;
+    [SerializeField, Min(0)] protected float timeToRelocate;
 
     [Header("References")]
     [SerializeField] private Animator animator;
 
-    protected Direction.Directions _forwardDirection; 
+    protected Direction.Directions _forwardDirection;
+    private Sequence _moveSequence;
+    private Sequence _changeCellSequence;
     private System.Collections.Generic.List<Cell> _startedCellList;
     private bool _isMoving;
 
     #region Properies
-    public float TimeToRelocate { get; private set; }
-
     public bool IsMoving 
     {
         get => _isMoving; 
@@ -30,21 +30,37 @@ public class MovingUnit : Unit, IMovingUnit
     public Cell HomeCell { get; set; }
     #endregion
 
-    private void OnEnable()
+    #region Unity functions
+    private void Awake()
     {
-        TimeToRelocate = startTimeToRelocate;
+        _moveSequence = DOTween.Sequence();
+        _changeCellSequence = DOTween.Sequence();
     }
+
+    private void OnDisable()
+    {
+        transform.position = HomeCell.Position;
+    }
+
+    private void OnDestroy()
+    {
+        HomeCell = null;
+    }
+    #endregion
 
     #region Move To
     public void MoveTo(Cell cell, float duration)
     {
-        Sequence moveSequence = DOTween.Sequence();
-        moveSequence.AppendCallback(() => IsMoving = true)
+        _moveSequence.Kill();
+        _changeCellSequence.Kill();
+
+        _moveSequence = DOTween.Sequence();
+        _moveSequence.AppendCallback(() => IsMoving = true)
             .Append(transform.DOMove(cell.Position, duration))
             .AppendCallback(() => EndMoving());
 
-        Sequence sequence = DOTween.Sequence();
-        sequence.AppendInterval(duration / 2)
+        _changeCellSequence = DOTween.Sequence();
+        _changeCellSequence.AppendInterval(duration / 2)
             .AppendCallback(() => Cell.RemoveUnit(this))
             .AppendCallback(() => Cell = cell)
             .AppendCallback(() => Cell.AddUnit(this));
@@ -56,17 +72,17 @@ public class MovingUnit : Unit, IMovingUnit
         MoveTo(cell, duration);
     }
 
-    public void MoveTo(Cell cell) => MoveTo(cell, TimeToRelocate);
+    public void MoveTo(Cell cell) => MoveTo(cell, timeToRelocate);
 
     public void MoveTo(Cell cell, Direction.Directions direction)
     {
         _forwardDirection = direction;
-        MoveTo(cell, TimeToRelocate);
+        MoveTo(cell, timeToRelocate);
     }
 
     public virtual void MoveToStartPosition()
     {
-        MoveTo(_startedCellList.Random(), TimeToRelocate * 3);
+        MoveTo(_startedCellList.Random(), timeToRelocate * 3);
     }
 
     protected virtual void EndMoving()

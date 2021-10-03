@@ -13,6 +13,11 @@ public class KeyboardControl : MonoBehaviour, IPlayerControl
         _unit = GetComponent<IMovingUnit>();
     }
 
+    private void OnEnable()
+    {
+        animations.ChangeSprite(KAP.Helper.Direction.Right);
+    }
+
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.R))

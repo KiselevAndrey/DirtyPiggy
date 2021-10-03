@@ -32,6 +32,11 @@ public class AIMoving : MovingUnit, IMovingUnit
     {
         Pig.MovingAction -= FindPigAroundAction;
     }
+
+    private void OnEnable()
+    {
+        animations.ChangeSprite(Direction.Left);
+    }
     #endregion
 
     #region Override
@@ -92,7 +97,7 @@ public class AIMoving : MovingUnit, IMovingUnit
         if (!IsMoving && TryFindPlayer(out Cell playerCell))
         {
             // if the player is found, then run to attack him
-            MoveTo(playerCell, TimeToRelocate * reducingTransitionTime * Field.Distance(playerCell, Cell));
+            MoveTo(playerCell, timeToRelocate * reducingTransitionTime * Field.Distance(playerCell, Cell));
             _waitSequence.Kill();
             return true;
         }
@@ -181,7 +186,7 @@ public class AIMoving : MovingUnit, IMovingUnit
     {
         Sequence moveSequence = DOTween.Sequence();
         moveSequence.AppendCallback(() => Cell.RemoveUnit(this))
-            .Append(transform.DOMove(HomeCell.Position, startTimeToRelocate))
+            .Append(transform.DOMove(HomeCell.Position, timeToRelocate))
             .AppendCallback(() => Cell = null)
             .AppendInterval(maxIdleTime)
             .AppendCallback(() => MoveToStartPosition());
