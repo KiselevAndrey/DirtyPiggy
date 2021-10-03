@@ -55,7 +55,7 @@ public class Bomb : Unit, IUnit
 
     private void CalculateBlastWave(Direction.Directions direction, int multiplier, int waveIndex = 1)
     {
-        Cell currentCell = Field.singleton.GiveCell(Cell, direction, waveIndex * multiplier);
+        Cell currentCell = Field.Singleton.GiveCell(Cell, direction, waveIndex * multiplier);
         Sequence blastWaveSequence = DOTween.Sequence();
         blastWaveSequence.AppendInterval(blastWaveDelay)
             .AppendCallback(() => currentCell.SpawningUnit(dirtySplashPrefab, false))

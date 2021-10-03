@@ -3,24 +3,37 @@ using KAP.Helper;
 
 public class Field : MonoBehaviour
 {
-    public static Field singleton;
+    public static Field Singleton;
 
     [Header("Parameters")]
     [SerializeField, Min(1)] private int countOfRows;
     [SerializeField, Min(1)] private int countOfColumns;
-    [SerializeField, Min(1)] public int cabbageCount;
 
     [Header("References")]
     [SerializeField] private System.Collections.Generic.List<Cell> wayPoints;
     [SerializeField] private System.Collections.Generic.List<Cell> dontSeed;
     [SerializeField] private GameObject cabbagePrefab;
+    [SerializeField] private UnityEngine.UI.Text cabbageCountText;
 
     private Cell[,] _cells;
+    private int _cabbageCount;
 
-    #region Awake Start
+    public int CabbageCount
+    {
+        get => _cabbageCount;
+        set
+        {
+            _cabbageCount = value;
+            cabbageCountText.text = value.ToString();
+            if (_cabbageCount < 1)
+                GameManager.Singleton.WinGame();
+        }
+    }
+
+    #region Awake
     private void Awake()
     {
-        if (!singleton) singleton = this;
+        if (!Singleton) Singleton = this;
         
         UpdateDontSeedList();
         WayPointsToCellMatrix();
@@ -36,9 +49,9 @@ public class Field : MonoBehaviour
     /// <summary> Plants cabbage in a cell </summary>
     public void Seeding()
     {
-        cabbageCount = Mathf.Min(cabbageCount, wayPoints.Count - dontSeed.Count);
+        CabbageCount = Mathf.Min(CabbageCount, wayPoints.Count - dontSeed.Count);
 
-        for (int i = 0; i < cabbageCount; i++)
+        for (int i = 0; i < CabbageCount; i++)
         {
             Cell temp = wayPoints.Random();
             if (temp.CanSeeding && temp.UnitsIsEmpty())
@@ -120,21 +133,4 @@ public class Field : MonoBehaviour
             : Mathf.Abs(firstCell.Index.Row - secondCell.Index.Row) + Mathf.Abs(firstCell.Index.Column - secondCell.Index.Column);
     }
     #endregion
-
-    public void CheckDirections()
-    {
-        for (int i = 0; i < _cells.GetLength(0); i++)
-            for (int j = 0; j < _cells.GetLength(1); j++)
-                CheckDirections(_cells[i, j]);
-    }
-
-    public void CheckDirections(Cell cell)
-    {
-        print(cell);
-        print("Up " + GiveCell(cell, Direction.Up, 1));
-        print("Down " + GiveCell(cell, Direction.Down, 1));
-        print("Left " + GiveCell(cell, Direction.Left, 1));
-        print("Rigth " + GiveCell(cell, Direction.Right, 1));
-        print("__________________");
-    }
 }

@@ -5,7 +5,7 @@ public class Pig : MovingUnit, IUnit
     #region Override
     public override void Die()
     {
-        GameManager.Singleton.EndGame();
+        GameManager.Singleton.LoseGame();
     }
 
     public override void MoveToStartPosition()

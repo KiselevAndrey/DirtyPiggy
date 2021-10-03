@@ -41,7 +41,7 @@ public class KeyboardControl : MonoBehaviour, IPlayerControl
 
     public void MoveTo(KAP.Helper.Direction.Directions direction, int distance)
     {
-        Cell temp = Field.singleton.GiveCell(_unit.Cell, direction, distance);
+        Cell temp = Field.Singleton.GiveCell(_unit.Cell, direction, distance);
         if (temp != null && temp.UnitsIsEmpty())
         {
             _unit.MoveTo(temp);

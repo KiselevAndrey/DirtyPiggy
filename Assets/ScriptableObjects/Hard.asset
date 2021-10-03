@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaaf1f74e9b7f7d45ba2cc80267c1b77, type: 3}
   m_Name: Hard
   m_EditorClassIdentifier: 
-  gabbageCount: 0
-  dogCount: 0
-  fermerCount: 0
+  minCabbageCount: 15
+  maxCabbageCount: 30
+  dogCount: 3
+  fermerCount: 2

@@ -123,7 +123,7 @@ public class AIMoving : MovingUnit, IMovingUnit
 
         for (int i = 1; i <= range; i++)
         {
-            findingCell = Field.singleton.GiveCell(Cell, direction, i);
+            findingCell = Field.Singleton.GiveCell(Cell, direction, i);
             if (findingCell != null)
             {
                 if (showFindingArea) findingCell.SpawningUnit(targetDisplayPrefab, false);
@@ -155,7 +155,7 @@ public class AIMoving : MovingUnit, IMovingUnit
     private void FindNewMoveDirection()
     {
         Direction.Directions direction = Direction.Random();
-        Cell nextCell = Field.singleton.GiveCell(Cell, direction, 1);
+        Cell nextCell = Field.Singleton.GiveCell(Cell, direction, 1);
 
         if (nextCell != null)
         {
@@ -172,7 +172,7 @@ public class AIMoving : MovingUnit, IMovingUnit
     #region BecomeDirty
     private void RunToHome()
     {
-        Cell nextCell = Field.singleton.GiveCell(Cell, Direction.Right, 1);
+        Cell nextCell = Field.Singleton.GiveCell(Cell, Direction.Right, 1);
         if (nextCell != null) MoveTo(nextCell, Direction.Right);
         else MoveToHomePosition();
     }
