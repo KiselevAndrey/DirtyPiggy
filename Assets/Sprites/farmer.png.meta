@@ -10,13 +10,13 @@ TextureImporter:
     second: farmer_1
   - first:
       213: -9215070241222095863
-    second: farmer_2
+    second: farmer_1
   - first:
       213: -4697590009104051591
-    second: farmer_3
+    second: farmer_2
   - first:
       213: 3191130952945803347
-    second: farmer_4
+    second: farmer_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
         width: 443
         height: 934
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -142,33 +142,12 @@ TextureImporter:
       name: farmer_1
       rect:
         serializedVersion: 2
-        x: 1937
-        y: 1981
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cb5a2da90db3e9ad0800000000000000
-      internalID: -2693649759984245316
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: farmer_2
-      rect:
-        serializedVersion: 2
-        x: 2144
-        y: 1356
+        x: 2140
+        y: 1363
         width: 460
         height: 940
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,7 +160,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: farmer_3
+      name: farmer_2
       rect:
         serializedVersion: 2
         x: 519
@@ -189,7 +168,7 @@ TextureImporter:
         width: 597
         height: 943
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,7 +181,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: farmer_4
+      name: farmer_3
       rect:
         serializedVersion: 2
         x: 2176
@@ -210,7 +189,7 @@ TextureImporter:
         width: 484
         height: 898
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
