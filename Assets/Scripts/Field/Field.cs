@@ -46,22 +46,6 @@ public class Field : MonoBehaviour
             dontSeed[i].CanSeeding = false;
     }
 
-    /// <summary> Plants cabbage in a cell </summary>
-    public void Seeding()
-    {
-        CabbageCount = Mathf.Min(CabbageCount, wayPoints.Count - dontSeed.Count);
-
-        for (int i = 0; i < CabbageCount; i++)
-        {
-            Cell temp = wayPoints.Random();
-            if (temp.CanSeeding && temp.UnitsIsEmpty())
-            {
-                temp.SpawningUnit(cabbagePrefab);
-            }
-            else i--;
-        }
-    }
-
     /// <summary> Converts a list of cells into a matrix. Gives cells an Index </summary>
     private void WayPointsToCellMatrix()
     {
@@ -131,6 +115,31 @@ public class Field : MonoBehaviour
         return firstCell == null || secondCell == null
             ? default
             : Mathf.Abs(firstCell.Index.Row - secondCell.Index.Row) + Mathf.Abs(firstCell.Index.Column - secondCell.Index.Column);
+    }
+    #endregion
+
+    #region Seeding Cleaning
+    /// <summary> Plants cabbage in a cell </summary>
+    public void Seeding()
+    {
+        CabbageCount = Mathf.Min(CabbageCount, wayPoints.Count - dontSeed.Count);
+
+        for (int i = 0; i < CabbageCount; i++)
+        {
+            Cell temp = wayPoints.Random();
+            if (temp.CanSeeding && temp.UnitsIsEmpty())
+            {
+                temp.SpawningUnit(cabbagePrefab);
+            }
+            else i--;
+        }
+    }
+
+    /// <summary> Clean all cells </summary>
+    public void Cleaning()
+    {
+        for (int i = 0; i < wayPoints.Count; i++)
+            wayPoints[i].Units.Clear();
     }
     #endregion
 }

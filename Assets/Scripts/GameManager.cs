@@ -60,11 +60,18 @@ public class GameManager : MonoBehaviour
 
     public void StartGame(int lvlIndex)
     {
-        KAP.Pool.Pool.DespawnAll();
+        Cleaning();
         pigSpawnCell.SpawningMovingUnit(pigPrefab, pigStartedList);
         SpawnLVL(lvlIndex);
         _currentLVL = lvlIndex;
         ActivateGameUI();
+    }
+
+    /// <summary> Clearing the Field of Units & start time </summary>
+    private void Cleaning()
+    {
+        KAP.Pool.Pool.DespawnAll();
+        Field.Singleton.Cleaning();
         Time.timeScale = 1f;
     }
 
@@ -93,14 +100,13 @@ public class GameManager : MonoBehaviour
     #region Menu
     public void ActivateMenu()
     {
-        KAP.Pool.Pool.DespawnAll();
+        Cleaning();
         menuUI.SetActive(true);
         startBtnsMenu.SetActive(true);
         selectLVLsMenu.SetActive(false);
         gameUI.SetActive(false);
         endGameUI.SetActive(false);
         SpawnLVL(0);
-        Time.timeScale = 1f;
     }
 
     public void ActivateGameUI()
