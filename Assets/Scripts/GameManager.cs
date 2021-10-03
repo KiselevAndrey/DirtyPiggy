@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Cell enemyCellSpawn;
     [SerializeField] private System.Collections.Generic.List<Cell> enemyStartedList;
 
+    [Header("Levels")]
+    [SerializeField] private System.Collections.Generic.List<LVLSO> lvlsList;
+
     private void Awake()
     {
         if (Singleton == null) Singleton = this;
@@ -23,12 +26,30 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        enemyCellSpawn.SpawningMovingUnit(dogPrefab, enemyStartedList);
-        enemyCellSpawn.SpawningMovingUnit(fermerPrebab, enemyStartedList);
+        SpawnLVL(0);
+    }
+
+    private void SpawnLVL(int index)
+    {
+        LVLSO lvl = lvlsList[index];
+
+        // spawn gabbage
+        Field.singleton.cabbageCount = lvl.GabbageCount;
+        Field.singleton.Seeding();
+
+        // spawn dogs
+        for (int i = 0; i < lvl.DogCount; i++)
+            enemyCellSpawn.SpawningMovingUnit(dogPrefab, enemyStartedList);
+
+        // spawn fermers
+        for (int i = 0; i < lvl.FermerCount; i++)
+            enemyCellSpawn.SpawningMovingUnit(fermerPrebab, enemyStartedList);
+
     }
 
     public void StartGame()
     {
+        KAP.Pool.Pool.DespawnAll();
         pigSpawnCell.SpawningMovingUnit(pigPrefab, pigStartedList);
     }
 

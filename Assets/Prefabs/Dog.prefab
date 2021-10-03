@@ -128,12 +128,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67964e6d3ffdcf6479ff49da8a5f9cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeToRelocate: 1
-  startedCellList: []
+  startTimeToRelocate: 0.5
   animator: {fileID: 1752352340148124153}
   findForwardRange: 2
   reducingTransitionTime: 0.6
-  maxIdleTime: 5
+  maxIdleTime: 0.1
   showFindingArea: 0
   animations: {fileID: 1752352340148124152}
   targetDisplayPrefab: {fileID: 7038513478104444741, guid: 1cdea737a7380de46ad1bb7c4acdf408, type: 3}

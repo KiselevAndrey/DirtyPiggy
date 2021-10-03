@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace KAP.Pool
@@ -90,6 +91,19 @@ namespace KAP.Pool
             else
             {
                 Debug.LogWarning("You can't despawned an object because it wasn't spawned", clone);
+            }
+        }
+
+        public static void DespawnAll()
+        {
+            int count = links.Count;
+            for (int i = 0; i < count; i++)
+            {
+                GameObject clone = links.Keys.ElementAt(links.Count - 1);
+                GameObjectPool pool = links.Values.ElementAt(links.Count - 1);
+
+                links.Remove(clone);
+                pool.Despawn(clone);
             }
         }
         #endregion
