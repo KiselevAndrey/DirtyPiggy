@@ -3,8 +3,17 @@ using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
+    private Matrix _index;
     #region Properties
-    public Matrix Index { get; set; }
+    public Matrix Index 
+    { 
+        get => _index;
+        set
+        {
+            _index = new Matrix();
+            _index = value;
+        } 
+    }
 
     public List<IUnit> Units { get; private set; }
 
@@ -17,7 +26,6 @@ public class Cell : MonoBehaviour
     {
         CanSeeding = true;
         Units = new List<IUnit>();
-        Index = new Matrix();
     }
 
     #region Spaning

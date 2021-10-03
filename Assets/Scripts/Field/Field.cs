@@ -8,7 +8,7 @@ public class Field : MonoBehaviour
     [Header("Parameters")]
     [SerializeField, Min(1)] private int countOfRows;
     [SerializeField, Min(1)] private int countOfColumns;
-    [SerializeField, Min(1)] private int cabbageCount;
+    [SerializeField, Min(1)] public int cabbageCount;
 
     [Header("References")]
     [SerializeField] private System.Collections.Generic.List<Cell> wayPoints;
@@ -21,12 +21,8 @@ public class Field : MonoBehaviour
     private void Awake()
     {
         if (!singleton) singleton = this;
-    }
-
-    private void Start()
-    {
+        
         UpdateDontSeedList();
-        Seeding();
         WayPointsToCellMatrix();
     }
 
@@ -38,7 +34,7 @@ public class Field : MonoBehaviour
     }
 
     /// <summary> Plants cabbage in a cell </summary>
-    private void Seeding()
+    public void Seeding()
     {
         cabbageCount = Mathf.Min(cabbageCount, wayPoints.Count - dontSeed.Count);
 
@@ -67,8 +63,6 @@ public class Field : MonoBehaviour
             wayPoints[i].Index = index;
             _cells[index.Row, index.Column] = wayPoints[i];
         }
-
-        wayPoints.Clear();
     }
     #endregion
 
@@ -126,4 +120,21 @@ public class Field : MonoBehaviour
             : Mathf.Abs(firstCell.Index.Row - secondCell.Index.Row) + Mathf.Abs(firstCell.Index.Column - secondCell.Index.Column);
     }
     #endregion
+
+    public void CheckDirections()
+    {
+        for (int i = 0; i < _cells.GetLength(0); i++)
+            for (int j = 0; j < _cells.GetLength(1); j++)
+                CheckDirections(_cells[i, j]);
+    }
+
+    public void CheckDirections(Cell cell)
+    {
+        print(cell);
+        print("Up " + GiveCell(cell, Direction.Up, 1));
+        print("Down " + GiveCell(cell, Direction.Down, 1));
+        print("Left " + GiveCell(cell, Direction.Left, 1));
+        print("Rigth " + GiveCell(cell, Direction.Right, 1));
+        print("__________________");
+    }
 }

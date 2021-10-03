@@ -83,7 +83,8 @@ public class AIMoving : MovingUnit, IMovingUnit
     #region FindPlayer
     private void FindPigAroundAction()
     {
-        FindPigAround();
+        if(!_isRunToHome)
+            FindPigAround();
     }
 
     private bool FindPigAround()
