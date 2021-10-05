@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Text endGameText;
 
     private int _currentLVL;
+    private bool _inGame;
 
     private void Awake()
     {
@@ -48,7 +49,10 @@ public class GameManager : MonoBehaviour
         SpawnLVL(lvlIndex);
         _currentLVL = lvlIndex;
         ActivateGameUI();
+        _inGame = true;
     }
+
+    /// <summary> Spawn cabbage, dogs and fermers </summary>
     private void SpawnLVL(int index)
     {
         LVLSO lvl = lvlsList[index];
@@ -67,21 +71,17 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    /// <summary> Clearing the Field of Units & start time </summary>
-    private void Cleaning()
-    {
-        KAP.Pool.Pool.DespawnAll();
-        Field.Singleton.Cleaning();
-        Time.timeScale = 1f;
-    }
-
     #region End Game
+    /// <summary> Call end game text and hide game UI </summary>
     public void EndGame(string text)
     {
-        Time.timeScale = 0f;
-        gameUI.SetActive(false);
-        endGameUI.SetActive(true);
-        endGameText.text = text;
+        if (_inGame)
+        {
+            Time.timeScale = 0f;
+            gameUI.SetActive(false);
+            endGameUI.SetActive(true);
+            endGameText.text = text;
+        }
     }
 
     public void LoseGame() => EndGame("You LOSE!\n\nTap to continue");
@@ -94,12 +94,11 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Max LVL", Mathf.Max(maxLVL, _currentLVL));
     }
     #endregion
-
-    public void Exit() => Application.Quit();
-
+    
     #region Menu
     public void ActivateMenu()
     {
+        _inGame = false;
         Cleaning();
         menuUI.SetActive(true);
         startBtnsMenu.SetActive(true);
@@ -127,4 +126,14 @@ public class GameManager : MonoBehaviour
             lvlsBtnsList[i].interactable = false;
     }
     #endregion
+
+    /// <summary> Cleaning the Field of Units and start time </summary>
+    private void Cleaning()
+    {
+        KAP.Pool.Pool.DespawnAll();
+        Field.Singleton.Cleaning();
+        Time.timeScale = 1f;
+    }
+
+    public void Exit() => Application.Quit();
 }
