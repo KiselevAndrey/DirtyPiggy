@@ -830,7 +830,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 111103198}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 687306232}
+        m_TargetAssemblyTypeName: BtnsControl, Assembly-CSharp
+        m_MethodName: MoveRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &111103198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2937,7 +2949,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 446229722}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 687306232}
+        m_TargetAssemblyTypeName: BtnsControl, Assembly-CSharp
+        m_MethodName: PlantBomb
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &446229722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3733,7 +3757,7 @@ GameObject:
   - component: {fileID: 687306233}
   - component: {fileID: 687306232}
   m_Layer: 0
-  m_Name: Player Control
+  m_Name: Btn Control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3748,11 +3772,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 687306231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb5f56113b72084abd2752ef2619d11, type: 3}
+  m_Script: {fileID: 11500000, guid: 42b32ea6a893d1c408b3c0c82a63379c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombPrefab: {fileID: 0}
-  animations: {fileID: 0}
 --- !u!4 &687306233
 Transform:
   m_ObjectHideFlags: 0
@@ -4884,7 +4906,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1174995027}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 687306232}
+        m_TargetAssemblyTypeName: BtnsControl, Assembly-CSharp
+        m_MethodName: MoveDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1174995027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5004,7 +5038,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1216025306}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 687306232}
+        m_TargetAssemblyTypeName: BtnsControl, Assembly-CSharp
+        m_MethodName: MoveUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1216025306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5449,7 +5495,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1363591942}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 687306232}
+        m_TargetAssemblyTypeName: BtnsControl, Assembly-CSharp
+        m_MethodName: MoveLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1363591942
 MonoBehaviour:
   m_ObjectHideFlags: 0
